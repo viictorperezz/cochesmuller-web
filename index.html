@@ -119,9 +119,6 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     play(el, [[0, { transform: 'translateX(-2309px)', opacity: 0 }, 'step-end'], [t, { transform: 'translateX(-2309px)', opacity: op }, OUT4],
               [t + .5, { transform: 'translateX(0px)', opacity: op }]]);
   });
-  // Empujón de la M justo antes de que llegue la primera rueda (se estira desde su esquina izquierda, x=828)
-  play(m, [[.9, { transform: 'translateX(0px) scaleX(1)' }, OUT3], [.975, { transform: 'translateX(-11px) scaleX(1.046)' }, IO],
-           [1.17, { transform: 'translateX(1.3px) scaleX(.99)' }, IO], [1.33, { transform: 'translateX(0px) scaleX(1)' }]]);
   const [orange, white] = document.querySelectorAll('.wheel');
   wheel(orange, 1.033, 1.7);
   wheel(white, 1.6, 2.25);
