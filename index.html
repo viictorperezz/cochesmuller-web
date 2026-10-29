@@ -9,6 +9,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,800;1,500&display=swap" rel="stylesheet">
+<script>
+  // Si va a haber animación, el logo empieza oculto: el móvil pinta antes de que arranque y se veía un parpadeo
+  if ('animate' in Element.prototype && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anim');
+</script>
 <style>
   :root { --navy: #0f1a2c; --orange: #ff6b2c; --white: #fff; }
   * { margin: 0; box-sizing: border-box; }
@@ -22,6 +26,7 @@
   .logo { width: min(420px, 80vw); height: auto; overflow: visible; }
   /* Sin JS o con movimiento reducido se ve el logo final: puntos sin llanta */
   .rim, .speed { opacity: 0; }
+  .anim .logo { opacity: 0; }
 
   .text { animation: fade-in .6s .8s backwards; }
   @keyframes fade-in { from { opacity: 0; transform: translateY(8px); } }
@@ -91,7 +96,8 @@ const OUT3 = 'cubic-bezier(.33,1,.68,1)', OUT4 = 'cubic-bezier(.25,1,.5,1)', IO 
 function play(el, keys) {
   const f = keys.map(([t, props, easing = 'linear']) => ({ ...props, offset: t / P, easing }));
   if (f[0].offset > 0) f.unshift({ ...f[0], offset: 0, easing: 'linear' });
-  if (f.at(-1).offset < 1) f.push({ ...f.at(-1), offset: 1, easing: 'linear' });
+  const last = f[f.length - 1];
+  if (last.offset < 1) f.push({ ...last, offset: 1, easing: 'linear' });
   el.animate(f, { duration: P * 1000, iterations: Infinity });
 }
 
@@ -111,7 +117,7 @@ function wheel(g, enter, hop) {
   play(g.querySelector('.rim'), [[hop + .13, { opacity: 1 }], [hop + .23, { opacity: 0 }]]);
 }
 
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+if (document.documentElement.classList.contains('anim')) {
   const m = document.getElementById('m');
   // La M entra desde la izquierda; las copias van unos milisegundos detrás y hacen de estela
   [...m.children].forEach((el, i, all) => {
