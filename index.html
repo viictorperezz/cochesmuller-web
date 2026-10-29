@@ -47,8 +47,8 @@
 </head>
 <body>
 <main>
-  <!-- Coordenadas sacadas del logo original (IMG_1051) -->
-  <svg class="logo" viewBox="140 600 1640 760" role="img" aria-label="Logo de Coches Müller">
+  <!-- Coordenadas sacadas del logo original (IMG_1051). Más alto que el logo para que quepa el círculo del spinner -->
+  <svg class="logo" viewBox="140 290 1640 1345" role="img" aria-label="Logo de Coches Müller">
     <defs>
       <polygon id="M" stroke-width="14" stroke-linejoin="round"
         points="962,640 1266,640 1300,905 1448,640 1752,640 1628,1282 1414,1282 1462,975 1290,1282 1152,1282 1120,972 1040,1282 828,1282"/>
@@ -69,23 +69,30 @@
       </g>
     </defs>
 
-    <g id="m" fill="var(--white)" stroke="var(--white)">
-      <use href="#M" opacity=".1"/>
-      <use href="#M" opacity=".2"/>
-      <use href="#M" opacity=".3"/>
-      <use href="#M" opacity=".4"/>
-      <use href="#M" opacity=".5"/>
-      <use href="#M"/>
-    </g>
+    <g id="scene">
+      <g id="m" fill="var(--white)" stroke="var(--white)">
+        <use href="#M" opacity=".1"/>
+        <use href="#M" opacity=".2"/>
+        <use href="#M" opacity=".3"/>
+        <use href="#M" opacity=".4"/>
+        <use href="#M" opacity=".5"/>
+        <use href="#M"/>
+      </g>
 
-    <g transform="translate(678 966)"><g class="wheel"><g><g>
-      <use class="speed" href="#speed" stroke="var(--orange)"/>
-      <g><circle r="154" fill="var(--orange)"/><use class="rim" href="#rim"/></g>
-    </g></g></g></g>
-    <g transform="translate(320 966)"><g class="wheel"><g><g>
-      <use class="speed" href="#speed" stroke="var(--white)"/>
-      <g><circle r="154" fill="var(--white)"/><use class="rim" href="#rim"/></g>
-    </g></g></g></g>
+      <!-- Cada rueda cuelga de un centro de giro en mitad de la M: ángulo (giro) y distancia (radio) -->
+      <g transform="translate(1290 966)"><g class="spin"><g class="loop"><g class="rad" transform="translate(-612 0)">
+        <g class="wheel"><g><g>
+          <use class="speed" href="#speed" stroke="var(--orange)"/>
+          <g><circle r="154" fill="var(--orange)"/><use class="rim" href="#rim"/></g>
+        </g></g></g>
+      </g></g></g></g>
+      <g transform="translate(1290 966)"><g class="spin"><g class="loop"><g class="rad" transform="translate(-970 0)">
+        <g class="wheel"><g><g>
+          <use class="speed" href="#speed" stroke="var(--white)"/>
+          <g><circle r="154" fill="var(--white)"/><use class="rim" href="#rim"/></g>
+        </g></g></g>
+      </g></g></g></g>
+    </g>
   </svg>
   <div class="text">
     <h1 aria-label="Coches Müller">COCHES <span>M<span class="u">U</span>LLER</span></h1>
@@ -93,8 +100,8 @@
   </div>
 </main>
 <script>
-// Tiempos y curvas medidos fotograma a fotograma en el vídeo del logo (en segundos). Todo se repite cada P.
-const P = 5.2;
+// Entrada con los tiempos y curvas medidos en el vídeo del logo (en segundos); se reproduce una vez y luego el spinner gira sin parar.
+const P = 4.1;
 const OUT3 = 'cubic-bezier(.33,1,.68,1)', OUT4 = 'cubic-bezier(.25,1,.5,1)', IO = 'cubic-bezier(.45,0,.55,1)';
 
 // keys: [segundo, propiedades, curva hasta la siguiente]; antes de la primera y tras la última se mantiene el valor
@@ -103,7 +110,7 @@ function play(el, keys) {
   if (f[0].offset > 0) f.unshift({ ...f[0], offset: 0, easing: 'linear' });
   const last = f[f.length - 1];
   if (last.offset < 1) f.push({ ...last, offset: 1, easing: 'linear' });
-  el.animate(f, { duration: P * 1000, iterations: Infinity });
+  el.animate(f, { duration: P * 1000, fill: 'both' });
 }
 
 function wheel(g, enter, hop) {
@@ -122,6 +129,16 @@ function wheel(g, enter, hop) {
   play(g.querySelector('.rim'), [[hop + .13, { opacity: 1 }], [hop + .23, { opacity: 0 }]]);
 }
 
+// Spinner: la rueda se abre a una órbita de radio R alrededor de la M y acelera hasta girar a velocidad constante.
+// El acelerón (curva cuadrática, 120° en .8s) acaba justo a la velocidad del giro continuo (360° en 1.2s), así no hay tirón.
+const T = 3.1, R = 756, LAG = .15;
+function orbit(rig, r0, d) {
+  const [spin, loop, rad] = [rig, rig.firstElementChild, rig.firstElementChild.firstElementChild];
+  play(rad, [[T + d, { transform: `translateX(${-r0}px)` }, IO], [T + d + .8, { transform: `translateX(${-R}px)` }]]);
+  play(spin, [[T + d, { transform: 'rotate(0deg)' }, 'cubic-bezier(.11,0,.5,0)'], [T + d + .8, { transform: 'rotate(120deg)' }]]);
+  loop.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 1200, iterations: Infinity, delay: (T + d + .8) * 1000 });
+}
+
 if (document.documentElement.classList.contains('anim')) {
   const m = document.getElementById('m');
   // La M entra desde la izquierda; las copias van unos milisegundos detrás y hacen de estela
@@ -133,9 +150,14 @@ if (document.documentElement.classList.contains('anim')) {
   const [orange, white] = document.querySelectorAll('.wheel');
   wheel(orange, 1.033, 1.7);
   wheel(white, 1.6, 2.25);
-  // Se queda quieto un momento y se desvanece entero antes de repetir. Sigue oculto un instante tras reiniciar
-  // para que, si el móvil reinicia las piezas con un fotograma de desfase, no se vea el logo entero de golpe
-  play(document.querySelector('.logo'), [[0, { opacity: 0 }, 'step-end'], [.25, { opacity: 1 }], [P - .7, { opacity: 1 }], [P - .3, { opacity: 0 }]]);
+  // Una vez montado el logo: la M se va al centro y se reduce un poco para que las ruedas giren a su alrededor
+  play(document.getElementById('scene'), [
+    [T, { transform: 'translate(0px, 0px) translate(1290px, 961px) scale(1) translate(-1290px, -961px)' }, IO],
+    [T + .8, { transform: 'translate(-331px, 0px) translate(1290px, 961px) scale(.72) translate(-1290px, -961px)' }]]);
+  const [o, w] = document.querySelectorAll('.spin');
+  orbit(o, 612, 0);
+  orbit(w, 970, LAG);
+  play(document.querySelector('.logo'), [[0, { opacity: 1 }]]);
 }
 </script>
 </body>
