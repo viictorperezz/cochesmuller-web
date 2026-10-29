@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coches Muller · Pronto empezaremos</title>
-<meta name="description" content="Coches Muller. Pronto empezaremos.">
+<title>Coches Müller · Pronto empezaremos</title>
+<meta name="description" content="Coches Müller. Pronto empezaremos.">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +32,11 @@
   @keyframes fade-in { from { opacity: 0; transform: translateY(8px); } }
   h1 { font-weight: 800; font-size: clamp(28px, 7vw, 56px); letter-spacing: .04em; line-height: 1; }
   h1 span { color: var(--orange); }
+  /* Diéresis de MÜLLER con los dos puntos del logo: blanco y naranja */
+  .u { position: relative; }
+  .u::before, .u::after { content: ''; position: absolute; top: -.12em; width: .16em; height: .16em; border-radius: 50%; }
+  .u::before { left: .2em; background: var(--white); }
+  .u::after { left: .5em; background: var(--orange); }
   p { margin-top: 14px; font-weight: 500; font-size: clamp(16px, 3.6vw, 22px); letter-spacing: .3em; opacity: .85; }
   .dots i { animation: blink 1.4s infinite; font-style: normal; }
   .dots i:nth-child(2) { animation-delay: .2s; }
@@ -43,7 +48,7 @@
 <body>
 <main>
   <!-- Coordenadas sacadas del logo original (IMG_1051) -->
-  <svg class="logo" viewBox="140 600 1640 760" role="img" aria-label="Logo de Coches Muller">
+  <svg class="logo" viewBox="140 600 1640 760" role="img" aria-label="Logo de Coches Müller">
     <defs>
       <polygon id="M" stroke-width="14" stroke-linejoin="round"
         points="962,640 1266,640 1300,905 1448,640 1752,640 1628,1282 1414,1282 1462,975 1290,1282 1152,1282 1120,972 1040,1282 828,1282"/>
@@ -83,7 +88,7 @@
     </g></g></g></g>
   </svg>
   <div class="text">
-    <h1>COCHES <span>MULLER</span></h1>
+    <h1 aria-label="Coches Müller">COCHES <span>M<span class="u">U</span>LLER</span></h1>
     <p>PRONTO EMPEZAREMOS<span class="dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></p>
   </div>
 </main>
