@@ -49,6 +49,8 @@
   .u::before { left: .11em; background: var(--white); }
   .u::after { left: .36em; background: var(--orange); }
   p { margin-top: 14px; font-weight: 500; font-size: clamp(16px, 3.6vw, 22px); letter-spacing: .3em; opacity: .85; }
+  .contact { display: inline-block; margin-top: 26px; padding-bottom: 3px; font-weight: 500; font-size: clamp(15px, 3.4vw, 19px); letter-spacing: .08em; color: var(--white); text-decoration: none; border-bottom: 2px solid var(--orange); opacity: .85; transition: color .2s, opacity .2s; }
+  .contact:hover, .contact:focus-visible { color: var(--orange); opacity: 1; }
   .dots i { animation: blink 1.4s infinite; font-style: normal; }
   .dots i:nth-child(2) { animation-delay: .2s; }
   .dots i:nth-child(3) { animation-delay: .4s; }
@@ -108,6 +110,7 @@
   <div class="text">
     <h1 aria-label="Coches Müller">COCHES <span>M<span class="u">U</span>LLER</span></h1>
     <p>PRONTO EMPEZAREMOS<span class="dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></p>
+    <a class="contact" href="mailto:info@cochesmuller.com">info@cochesmuller.com</a>
   </div>
 </main>
 <script>
