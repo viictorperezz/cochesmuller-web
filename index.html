@@ -20,40 +20,11 @@
   }
   main { display: grid; justify-items: center; gap: 28px; width: 100%; }
   .logo { width: min(420px, 80vw); height: auto; overflow: visible; }
+  /* Sin JS o con movimiento reducido se ve el logo final: puntos sin llanta */
+  .rim, .speed { opacity: 0; }
 
-  /* Secuencia copiada del vídeo: la M entra con estela, luego cada rueda llega rodando por el suelo,
-     salta y se queda como punto. Las ruedas repiten en bucle (spinner). */
-  .m { animation: m-in .6s cubic-bezier(.15,.85,.25,1) .3s backwards; }
-  /* La estela se recoge detrás de la M mientras frena */
-  .trail use { animation: trail .5s cubic-bezier(.3,.7,.3,1) .3s backwards; }
-  .wheel { animation: wheel 4.2s .9s infinite backwards; }
-  .wheel .roll { animation: roll 4.2s .9s infinite backwards; }
-  .wheel .rim { animation: rim 4.2s .9s infinite backwards; }
-  .wheel .speed { animation: speed 4.2s .9s infinite backwards; }
-  .wheel.white, .wheel.white * { animation-delay: 1.45s; }
   .text { animation: fade-in .6s .8s backwards; }
-
-  @keyframes m-in { from { transform: translateX(-1400px); } }
-  @keyframes trail { from { transform: translateX(var(--x)); } }
   @keyframes fade-in { from { opacity: 0; transform: translateY(8px); } }
-  @keyframes wheel {
-    /* 162 = baja la rueda hasta apoyarla en la base de la M */
-    0%   { transform: translate(-900px, 162px); opacity: 0; animation-timing-function: cubic-bezier(.3,.6,.4,1); }
-    3%   { opacity: 1; }
-    12%  { transform: translate(-50px, 162px); }
-    15%  { transform: translate(-50px, 162px) scale(1, 1); animation-timing-function: ease-out; }
-    18%  { transform: translate(-20px, -25px) scale(.9, 1.12); animation-timing-function: ease-in; }
-    21%  { transform: translate(0, 0) scale(1.1, .9); }
-    24%, 82% { transform: translate(0, 0) scale(1, 1); opacity: 1; }
-    90%, 100% { transform: translate(0, 0); opacity: 0; }
-  }
-  @keyframes roll {
-    0%   { transform: rotate(-540deg); animation-timing-function: cubic-bezier(.3,.6,.4,1); }
-    12%, 100% { transform: rotate(0); }
-  }
-  @keyframes rim { 0%, 15% { opacity: 1; } 19%, 100% { opacity: 0; } }
-  @keyframes speed { 0% { opacity: 0; } 3% { opacity: .7; } 9% { opacity: .5; } 12%, 100% { opacity: 0; } }
-
   h1 { font-weight: 800; font-size: clamp(28px, 7vw, 56px); letter-spacing: .04em; line-height: 1; }
   h1 span { color: var(--orange); }
   p { margin-top: 14px; font-weight: 500; font-size: clamp(16px, 3.6vw, 22px); letter-spacing: .3em; opacity: .85; }
@@ -61,11 +32,7 @@
   .dots i:nth-child(2) { animation-delay: .2s; }
   .dots i:nth-child(3) { animation-delay: .4s; }
   @keyframes blink { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; }
-    .trail, .rim, .speed { display: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -92,30 +59,75 @@
       </g>
     </defs>
 
-    <g class="m" fill="var(--white)" stroke="var(--white)">
-      <g class="trail">
-        <use href="#M" style="--x:-300px" opacity=".08"/>
-        <use href="#M" style="--x:-240px" opacity=".16"/>
-        <use href="#M" style="--x:-180px" opacity=".26"/>
-        <use href="#M" style="--x:-120px" opacity=".38"/>
-        <use href="#M" style="--x:-60px" opacity=".5"/>
-      </g>
+    <g id="m" fill="var(--white)" stroke="var(--white)">
+      <use href="#M" opacity=".1"/>
+      <use href="#M" opacity=".2"/>
+      <use href="#M" opacity=".3"/>
+      <use href="#M" opacity=".4"/>
+      <use href="#M" opacity=".5"/>
       <use href="#M"/>
     </g>
 
-    <g transform="translate(678 966)"><g class="wheel">
+    <g transform="translate(678 966)"><g class="wheel"><g><g>
       <use class="speed" href="#speed" stroke="var(--orange)"/>
-      <g class="roll"><circle r="154" fill="var(--orange)"/><use class="rim" href="#rim"/></g>
-    </g></g>
-    <g transform="translate(320 966)"><g class="wheel white">
+      <g><circle r="154" fill="var(--orange)"/><use class="rim" href="#rim"/></g>
+    </g></g></g></g>
+    <g transform="translate(320 966)"><g class="wheel"><g><g>
       <use class="speed" href="#speed" stroke="var(--white)"/>
-      <g class="roll"><circle r="154" fill="var(--white)"/><use class="rim" href="#rim"/></g>
-    </g></g>
+      <g><circle r="154" fill="var(--white)"/><use class="rim" href="#rim"/></g>
+    </g></g></g></g>
   </svg>
   <div class="text">
     <h1>COCHES <span>MULLER</span></h1>
     <p>PRONTO EMPEZAREMOS<span class="dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></p>
   </div>
 </main>
+<script>
+// Tiempos y curvas medidos fotograma a fotograma en el vídeo del logo (en segundos). Todo se repite cada P.
+const P = 5.2;
+const OUT3 = 'cubic-bezier(.33,1,.68,1)', OUT4 = 'cubic-bezier(.25,1,.5,1)', IO = 'cubic-bezier(.45,0,.55,1)';
+
+// keys: [segundo, propiedades, curva hasta la siguiente]; antes de la primera y tras la última se mantiene el valor
+function play(el, keys) {
+  const f = keys.map(([t, props, easing = 'linear']) => ({ ...props, offset: t / P, easing }));
+  if (f[0].offset > 0) f.unshift({ ...f[0], offset: 0, easing: 'linear' });
+  if (f.at(-1).offset < 1) f.push({ ...f.at(-1), offset: 1, easing: 'linear' });
+  el.animate(f, { duration: P * 1000, iterations: Infinity });
+}
+
+function wheel(g, enter, hop) {
+  const [x, y, s, roll] = [g, g.firstElementChild, g.firstElementChild.firstElementChild, g.querySelector('use + g')];
+  // Llega rodando por el suelo y frena; luego salta hasta su sitio
+  play(x, [[enter, { transform: 'translateX(-1201px)' }, OUT3], [enter + .65, { transform: 'translateX(-108px)' }],
+           [hop, { transform: 'translateX(-108px)' }, IO], [hop + .3, { transform: 'translateX(0px)' }]]);
+  play(roll, [[enter, { transform: 'rotate(-405deg)' }, OUT3], [enter + .65, { transform: 'rotate(0deg)' }]]);
+  play(g.querySelector('.speed'), [[enter, { opacity: .8 }, OUT3], [enter + .35, { opacity: 0 }]]);
+  // Salto con rebote tipo muelle (sube, se pasa, se aplasta al caer y se asienta)
+  play(y, [[0, { opacity: 0 }], [enter, { opacity: 0 }], [enter + .05, { opacity: 1 }]]);
+  play(y, [[hop, { transform: 'translateY(162px)' }, 'cubic-bezier(.3,.38,.65,1)'], [hop + .2, { transform: 'translateY(-46px)' }, IO],
+           [hop + .34, { transform: 'translateY(25px)' }, IO], [hop + .48, { transform: 'translateY(-7px)' }, IO], [hop + .62, { transform: 'translateY(0px)' }]]);
+  play(s, [[hop, { transform: 'scale(1, 1)' }, IO], [hop + .14, { transform: 'scale(.9, 1.11)' }, IO],
+           [hop + .34, { transform: 'scale(1.09, .92)' }, IO], [hop + .48, { transform: 'scale(.967, 1.045)' }, IO], [hop + .62, { transform: 'scale(1, 1)' }]]);
+  play(g.querySelector('.rim'), [[hop + .13, { opacity: 1 }], [hop + .23, { opacity: 0 }]]);
+}
+
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const m = document.getElementById('m');
+  // La M entra desde la izquierda; las copias van unos milisegundos detrás y hacen de estela
+  [...m.children].forEach((el, i, all) => {
+    const t = .3 + (all.length - 1 - i) * .004, op = +(el.getAttribute('opacity') ?? 1);
+    play(el, [[0, { transform: 'translateX(-2309px)', opacity: 0 }, 'step-end'], [t, { transform: 'translateX(-2309px)', opacity: op }, OUT4],
+              [t + .5, { transform: 'translateX(0px)', opacity: op }]]);
+  });
+  // Empujón de la M justo antes de que llegue la primera rueda (se estira desde su esquina izquierda, x=828)
+  play(m, [[.9, { transform: 'translateX(0px) scaleX(1)' }, OUT3], [.975, { transform: 'translateX(-11px) scaleX(1.046)' }, IO],
+           [1.17, { transform: 'translateX(1.3px) scaleX(.99)' }, IO], [1.33, { transform: 'translateX(0px) scaleX(1)' }]]);
+  const [orange, white] = document.querySelectorAll('.wheel');
+  wheel(orange, 1.033, 1.7);
+  wheel(white, 1.6, 2.25);
+  // Se queda quieto un momento y se desvanece entero antes de repetir
+  play(document.querySelector('.logo'), [[P - .7, { opacity: 1 }], [P - .3, { opacity: 0 }]]);
+}
+</script>
 </body>
 </html>
