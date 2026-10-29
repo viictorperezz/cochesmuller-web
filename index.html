@@ -34,9 +34,9 @@
   h1 span { color: var(--orange); }
   /* Diéresis de MÜLLER con los dos puntos del logo: blanco y naranja */
   .u { position: relative; }
-  .u::before, .u::after { content: ''; position: absolute; top: -.12em; width: .16em; height: .16em; border-radius: 50%; }
-  .u::before { left: .2em; background: var(--white); }
-  .u::after { left: .5em; background: var(--orange); }
+  .u::before, .u::after { content: ''; position: absolute; top: -.01em; width: .26em; height: .26em; border-radius: 50%; }
+  .u::before { left: .035em; background: var(--white); }
+  .u::after { left: .365em; background: var(--orange); }
   p { margin-top: 14px; font-weight: 500; font-size: clamp(16px, 3.6vw, 22px); letter-spacing: .3em; opacity: .85; }
   .dots i { animation: blink 1.4s infinite; font-style: normal; }
   .dots i:nth-child(2) { animation-delay: .2s; }
@@ -133,8 +133,9 @@ if (document.documentElement.classList.contains('anim')) {
   const [orange, white] = document.querySelectorAll('.wheel');
   wheel(orange, 1.033, 1.7);
   wheel(white, 1.6, 2.25);
-  // Se queda quieto un momento y se desvanece entero antes de repetir
-  play(document.querySelector('.logo'), [[P - .7, { opacity: 1 }], [P - .3, { opacity: 0 }]]);
+  // Se queda quieto un momento y se desvanece entero antes de repetir. Sigue oculto un instante tras reiniciar
+  // para que, si el móvil reinicia las piezas con un fotograma de desfase, no se vea el logo entero de golpe
+  play(document.querySelector('.logo'), [[0, { opacity: 0 }, 'step-end'], [.25, { opacity: 1 }], [P - .7, { opacity: 1 }], [P - .3, { opacity: 0 }]]);
 }
 </script>
 </body>
