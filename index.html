@@ -3,176 +3,485 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coches Müller · Pronto empezaremos</title>
-<meta name="description" content="Coches Müller. Pronto empezaremos.">
+<title>Coches Müller · Coches de Alemania y España, revisados y con garantía</title>
+<meta name="description" content="Buscamos, revisamos y traemos coches de ocasión desde Alemania y España. Coche a la carta: tú eliges, nosotros nos ocupamos de todo.">
 <!-- Vista previa al compartir el enlace (WhatsApp, redes...) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Coches Müller">
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://cochesmuller.com/">
 <meta property="og:title" content="Coches Müller">
-<meta property="og:description" content="Coches Müller">
+<meta property="og:description" content="Coches de Alemania y España, revisados y con garantía. Coche a la carta.">
 <meta property="og:image" content="https://cochesmuller.com/og.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f1a2c">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,800;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,600;1,800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/portada-1000.webp" imagesrcset="img/portada-1000.webp 1000w, img/portada-2000.webp 2000w" imagesizes="100vw">
 <script>
-  // Si va a haber animación, el logo empieza oculto: el móvil pinta antes de que arranque y se veía un parpadeo
-  if ('animate' in Element.prototype && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anim');
+  // Con JS, los bloques aparecen al hacer scroll; sin JS (o con movimiento reducido) se ven desde el principio
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js');
 </script>
 <style>
-  :root { --navy: #0f1a2c; --orange: #ff6b2c; --white: #fff; }
-  * { margin: 0; box-sizing: border-box; }
-  html, body { height: 100%; overflow-x: hidden; }
-  body {
-    background: var(--navy); color: var(--white);
-    font-family: Barlow, system-ui, sans-serif; font-style: italic;
-    display: grid; place-items: center; text-align: center; padding: 24px 16px;
+  :root {
+    --navy: #0f1a2c; --navy-2: #16233a; --navy-3: #0a1220;
+    --naranja: #ff6b2c; --blanco: #fff; --claro: #f3f5f8; --gris: #5b6578;
+    --cab: 84px; --ancho: 1240px;
   }
-  main { display: grid; justify-items: center; gap: 28px; width: 100%; }
-  .logo { width: min(420px, 80vw); height: auto; overflow: visible; }
-  /* Sin JS o con movimiento reducido se ve el logo final: puntos sin llanta */
-  .rim, .speed { opacity: 0; }
-  .anim .logo { opacity: 0; }
+  * { margin: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--cab); }
+  body { background: var(--navy); color: var(--blanco); font: 400 17px/1.65 Barlow, system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  .envoltura { width: min(100% - 32px, var(--ancho)); margin-inline: auto; }
+  .titular { font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: .01em; line-height: 1.02; }
+  .antetitulo { font-weight: 600; font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: var(--naranja); }
+  .salto { position: absolute; left: -999px; top: 8px; z-index: 100; background: var(--naranja); color: var(--navy); padding: 8px 14px; border-radius: 8px; font-weight: 600; }
+  .salto:focus { left: 16px; }
+  :focus-visible { outline: 2px solid var(--naranja); outline-offset: 3px; }
 
-  .text { animation: fade-in .6s .8s backwards; }
-  @keyframes fade-in { from { opacity: 0; transform: translateY(8px); } }
-  h1 { font-weight: 800; font-size: clamp(28px, 7vw, 56px); letter-spacing: .04em; line-height: 1; }
-  h1 span { color: var(--orange); }
   /* Diéresis de MÜLLER con los dos puntos del logo: blanco y naranja */
   .u { position: relative; }
   .u::before, .u::after { content: ''; position: absolute; top: .04em; width: .19em; height: .19em; border-radius: 50%; }
-  .u::before { left: .11em; background: var(--white); }
-  .u::after { left: .36em; background: var(--orange); }
-  p { margin-top: 14px; font-weight: 500; font-size: clamp(16px, 3.6vw, 22px); letter-spacing: .3em; opacity: .85; }
-  .contact { display: inline-block; margin-top: 26px; padding-bottom: 3px; font-weight: 500; font-size: clamp(15px, 3.4vw, 19px); letter-spacing: .08em; color: var(--white); text-decoration: none; border-bottom: 2px solid var(--orange); opacity: .85; transition: color .2s, opacity .2s; }
-  .contact:hover, .contact:focus-visible { color: var(--orange); opacity: 1; }
-  .dots i { animation: blink 1.4s infinite; font-style: normal; }
-  .dots i:nth-child(2) { animation-delay: .2s; }
-  .dots i:nth-child(3) { animation-delay: .4s; }
-  @keyframes blink { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  .u::before { left: .11em; background: var(--blanco); }
+  .u::after { left: .36em; background: var(--naranja); }
+
+  /* ---------- Botones ---------- */
+  .boton { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 999px; font-weight: 600; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .2s, color .2s, border-color .2s, transform .2s; }
+  .boton-lleno { background: var(--naranja); color: var(--navy); border: 1.5px dashed transparent; }
+  .boton-lleno:hover { background: #ff8550; transform: translateY(-1px); }
+  .boton-borde { border: 1.5px dashed rgb(255 255 255 / .7); color: var(--blanco); }
+  .boton-borde:hover { border-color: var(--naranja); color: var(--naranja); }
+  /* Flecha en círculo discontinuo */
+  .flecha { display: grid; place-items: center; width: 52px; height: 52px; flex: none; border: 1.5px dashed currentColor; border-radius: 50%; transition: background .25s, color .25s, border-color .25s, transform .25s; }
+  .flecha svg { width: 22px; height: 22px; }
+
+  /* ---------- Cabecera ---------- */
+  .cabecera { position: fixed; inset: 0 0 auto; z-index: 50; height: var(--cab); background: rgb(15 26 44 / .94); backdrop-filter: blur(10px); border-bottom: 1px solid rgb(255 255 255 / .06); }
+  .cabecera .envoltura { height: 100%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; width: min(100% - 48px, 1400px); }
+  .boton-menu { justify-self: start; display: flex; align-items: center; gap: 14px; background: none; border: 0; color: var(--blanco); font: 500 13px Barlow, sans-serif; letter-spacing: .2em; cursor: pointer; padding: 8px 0; }
+  .hamburguesa { display: grid; gap: 7px; width: 32px; }
+  .hamburguesa span { height: 2px; background: currentColor; border-radius: 2px; transition: transform .3s, opacity .3s; }
+  .menu-abierto .hamburguesa span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .menu-abierto .hamburguesa span:nth-child(2) { opacity: 0; }
+  .menu-abierto .hamburguesa span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  .marca { display: grid; justify-items: center; gap: 4px; text-decoration: none; }
+  .marca svg { width: 92px; height: auto; }
+  .marca span { font-weight: 500; font-size: 11px; letter-spacing: .42em; padding-left: .42em; color: rgb(255 255 255 / .85); }
+  .cta-cabecera { justify-self: end; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+  .cta-cabecera:hover { color: var(--naranja); }
+  .puntos { display: inline-flex; gap: 3px; }
+  .puntos i { width: 9px; height: 9px; border-radius: 50%; background: var(--blanco); }
+  .puntos i + i { background: var(--naranja); }
+
+  /* ---------- Menú a pantalla completa ---------- */
+  .menu { position: fixed; inset: var(--cab) 0 0; z-index: 40; background: var(--navy); display: grid; align-content: center; padding: 32px 0 48px; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
+  .menu-abierto .menu { opacity: 1; visibility: visible; }
+  .menu ul { list-style: none; padding: 0; display: grid; gap: 6px; }
+  .menu ul a { text-decoration: none; font-size: clamp(34px, 6vw, 64px); display: inline-flex; align-items: baseline; gap: 18px; transition: color .2s; }
+  .menu ul a small { font: 500 14px Barlow, sans-serif; letter-spacing: .2em; color: var(--naranja); font-style: normal; min-width: 2.2em; }
+  .menu a:hover { color: var(--naranja); }
+  .menu .contacto-menu { margin-top: 40px; color: rgb(255 255 255 / .7); }
+  .menu .contacto-menu a { font-weight: 600; }
+
+  /* ---------- Portada ---------- */
+  .portada { position: relative; min-height: 100svh; display: grid; align-items: end; padding: calc(var(--cab) + 40px) 0 clamp(48px, 9vh, 96px); isolation: isolate; overflow: hidden; }
+  .portada picture, .portada .velo { position: absolute; inset: 0; z-index: -1; }
+  .portada img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; animation: acercar 14s ease-out both; }
+  @keyframes acercar { from { transform: scale(1.08); } to { transform: scale(1); } }
+  .portada .velo { background: linear-gradient(180deg, rgb(15 26 44 / .35) 0%, rgb(15 26 44 / .05) 35%, rgb(15 26 44 / .55) 70%, rgb(15 26 44 / .95) 100%); }
+  .portada .texto { text-align: right; justify-self: end; max-width: 820px; }
+  .portada h1 { font-size: clamp(40px, 6.4vw, 92px); text-shadow: 0 2px 30px rgb(0 0 0 / .35); }
+  .portada h1 em { color: var(--naranja); font-style: inherit; }
+  .portada p { margin: 22px 0 0 auto; max-width: 560px; font-size: clamp(16px, 1.6vw, 19px); color: rgb(255 255 255 / .88); }
+  .portada .acciones { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: flex-end; }
+  .bajar { position: absolute; left: 50%; bottom: 22px; translate: -50% 0; width: 26px; height: 42px; border: 1.5px solid rgb(255 255 255 / .6); border-radius: 14px; }
+  .bajar::after { content: ''; position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--naranja); animation: rueda 1.8s infinite; }
+  @keyframes rueda { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
+
+  /* ---------- Presentación ---------- */
+  .intro { padding: clamp(80px, 11vw, 150px) 0 clamp(56px, 7vw, 90px); }
+  .intro .envoltura { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .intro h2 { font-size: clamp(34px, 4.4vw, 62px); }
+  .intro h2 em { color: var(--naranja); font-style: inherit; }
+  .intro .lado p + p { margin-top: 16px; }
+  .intro .lado p { color: rgb(255 255 255 / .82); }
+  .firma { margin-top: 28px; display: flex; align-items: center; gap: 12px; font-weight: 800; font-style: italic; letter-spacing: .04em; }
+  .firma .puntos i { width: 12px; height: 12px; }
+
+  /* ---------- Servicios (tarjetas con foto) ---------- */
+  .servicios { padding-bottom: clamp(80px, 10vw, 140px); }
+  .tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .tarjeta { position: relative; min-height: 560px; display: flex; flex-direction: column; justify-content: flex-end; padding: 36px; overflow: hidden; isolation: isolate; text-decoration: none; }
+  .tarjeta img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .tarjeta::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(10 18 32 / .15) 0%, rgb(10 18 32 / .55) 45%, rgb(10 18 32 / .94) 100%); transition: background .4s; }
+  .tarjeta h3 { font-size: clamp(26px, 2.4vw, 34px); }
+  .tarjeta p { margin-top: 12px; color: rgb(255 255 255 / .85); max-width: 34ch; }
+  .tarjeta .flecha { margin-top: 26px; align-self: flex-end; }
+  .tarjeta:hover img { transform: scale(1.06); }
+  .tarjeta:hover .flecha { background: var(--naranja); border-color: var(--naranja); color: var(--navy); transform: rotate(-45deg); }
+
+  /* ---------- Cómo trabajamos (fondo claro) ---------- */
+  .pasos { background: var(--claro); color: var(--navy); padding: clamp(80px, 10vw, 140px) 0; }
+  .pasos .cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(40px, 6vw, 72px); }
+  .pasos h2 { font-size: clamp(36px, 4.6vw, 64px); }
+  .pasos .cabeza p { max-width: 440px; color: var(--gris); }
+  .lista-pasos { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: paso; }
+  .lista-pasos li { background: var(--blanco); border-radius: 18px; padding: 30px 26px 32px; box-shadow: 0 1px 0 rgb(15 26 44 / .06), 0 18px 40px -24px rgb(15 26 44 / .35); }
+  .lista-pasos li::before { counter-increment: paso; content: '0' counter(paso); display: block; font-weight: 800; font-style: italic; font-size: 64px; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--naranja); margin-bottom: 18px; }
+  .lista-pasos h3 { font-weight: 800; font-style: italic; text-transform: uppercase; font-size: 21px; line-height: 1.15; }
+  .lista-pasos p { margin-top: 10px; color: var(--gris); font-size: 16px; }
+
+  /* ---------- Por qué Alemania (foto a todo el ancho) ---------- */
+  .alemania { position: relative; isolation: isolate; padding: clamp(90px, 12vw, 170px) 0; overflow: hidden; }
+  .alemania > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+  .alemania::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(10 18 32 / .96) 0%, rgb(10 18 32 / .86) 45%, rgb(10 18 32 / .25) 100%); }
+  .alemania .bloque { max-width: 600px; }
+  .alemania h2 { font-size: clamp(36px, 4.6vw, 64px); margin-top: 14px; }
+  .alemania ul { list-style: none; padding: 0; margin: 30px 0 36px; display: grid; gap: 16px; }
+  .alemania li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; color: rgb(255 255 255 / .88); }
+  .alemania li strong { color: var(--blanco); }
+  .alemania li::before { content: ''; width: 22px; height: 22px; margin-top: 3px; border-radius: 50%; border: 1.5px dashed var(--naranja); background: radial-gradient(circle, var(--naranja) 0 4px, transparent 5px); }
+
+  /* ---------- Franja ---------- */
+  .franja { background: var(--naranja); color: var(--navy); overflow: hidden; padding: 14px 0; }
+  .cinta { display: flex; width: max-content; animation: desliza 38s linear infinite; }
+  .cinta span { font-weight: 800; font-style: italic; font-size: 20px; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; padding-right: 48px; }
+  @keyframes desliza { to { transform: translateX(-50%); } }
+
+  /* ---------- Coche a la carta (formulario) ---------- */
+  .carta { position: relative; isolation: isolate; padding: clamp(80px, 10vw, 140px) 0; }
+  .carta > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; opacity: .28; }
+  .carta::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--navy) 0%, rgb(15 26 44 / .82) 40%, var(--navy) 100%); }
+  .carta .envoltura { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+  .carta h2 { font-size: clamp(38px, 4.8vw, 68px); margin-top: 14px; }
+  .carta .explica { margin-top: 20px; color: rgb(255 255 255 / .82); max-width: 460px; }
+  .directo { margin-top: 34px; display: grid; gap: 6px; }
+  .directo span { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: rgb(255 255 255 / .55); }
+  .directo a { font-size: 22px; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--naranja); justify-self: start; }
+  .directo a:hover { color: var(--naranja); }
+  form { background: var(--navy-2); border: 1px solid rgb(255 255 255 / .08); border-radius: 22px; padding: clamp(24px, 3vw, 40px); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; box-shadow: 0 30px 80px -40px rgb(0 0 0 / .7); }
+  label { display: grid; gap: 7px; font-size: 14px; font-weight: 500; color: rgb(255 255 255 / .75); }
+  .ancho { grid-column: 1 / -1; }
+  input, textarea { font: inherit; font-size: 16px; color: var(--blanco); background: var(--navy); border: 1px solid rgb(255 255 255 / .14); border-radius: 12px; padding: 13px 14px; width: 100%; transition: border-color .2s, box-shadow .2s; }
+  input::placeholder, textarea::placeholder { color: rgb(255 255 255 / .35); }
+  input:focus, textarea:focus { outline: none; border-color: var(--naranja); box-shadow: 0 0 0 3px rgb(255 107 44 / .25); }
+  textarea { resize: vertical; min-height: 104px; }
+  form .boton { justify-self: start; border: 0; cursor: pointer; font-family: inherit; }
+  .nota { font-size: 14px; color: rgb(255 255 255 / .55); align-self: center; }
+
+  /* ---------- Pie ---------- */
+  footer { background: var(--navy-3); padding: 64px 0 28px; }
+  .pie { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
+  .pie .marca { justify-items: start; }
+  .pie .marca svg { width: 120px; }
+  .pie p { margin-top: 16px; color: rgb(255 255 255 / .6); max-width: 320px; font-size: 15px; }
+  .pie h3 { font-weight: 800; font-style: italic; text-transform: uppercase; font-size: 15px; letter-spacing: .12em; margin-bottom: 14px; }
+  .pie ul { list-style: none; padding: 0; display: grid; gap: 8px; }
+  .pie ul a { text-decoration: none; color: rgb(255 255 255 / .75); }
+  .pie ul a:hover { color: var(--naranja); }
+  .legal { margin-top: 48px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / .08); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px; color: rgb(255 255 255 / .45); }
+
+  /* Botón flotante (sobre todo para el móvil) */
+  .flotante { position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--naranja); color: var(--navy); display: grid; place-items: center; box-shadow: 0 10px 30px -8px rgb(255 107 44 / .6); transition: transform .2s, opacity .3s; }
+  .flotante:hover { transform: scale(1.06); }
+  .flotante svg { width: 24px; height: 24px; }
+  .flotante.oculto { opacity: 0; pointer-events: none; }
+
+  /* Aparición al hacer scroll */
+  .js .rev { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+  .js .rev.visto { opacity: 1; transform: none; }
+  .js .tarjetas .rev:nth-child(2) { transition-delay: .12s; }
+  .js .tarjetas .rev:nth-child(3) { transition-delay: .24s; }
+  .js .lista-pasos .rev:nth-child(2) { transition-delay: .1s; }
+  .js .lista-pasos .rev:nth-child(3) { transition-delay: .2s; }
+  .js .lista-pasos .rev:nth-child(4) { transition-delay: .3s; }
+
+  /* ---------- Tablet ---------- */
+  @media (max-width: 1080px) {
+    .lista-pasos { grid-template-columns: repeat(2, 1fr); }
+    .tarjeta { min-height: 480px; padding: 28px; }
+  }
+  /* ---------- Móvil ---------- */
+  @media (max-width: 760px) {
+    :root { --cab: 68px; }
+    body { font-size: 16px; }
+    .cabecera .envoltura { grid-template-columns: auto 1fr; width: calc(100% - 32px); }
+    .marca { order: -1; justify-items: start; }
+    .cabecera .marca svg { width: 64px; }
+    .cabecera .marca span { font-size: 9px; letter-spacing: .32em; padding-left: 0; }
+    .boton-menu { justify-self: end; }
+    .boton-menu .rotulo { order: -1; }
+    .cta-cabecera { display: none; }
+    .portada .texto { text-align: left; justify-self: start; }
+    .portada p { margin-left: 0; }
+    .portada .acciones { justify-content: flex-start; }
+    .portada img { object-position: 46% 55%; }
+    .bajar { display: none; }
+    .intro .envoltura, .carta .envoltura { grid-template-columns: 1fr; }
+    .tarjetas { grid-template-columns: 1fr; gap: 16px; width: calc(100% - 32px); margin-inline: auto; }
+    .tarjeta { min-height: 420px; border-radius: 18px; padding: 26px; }
+    .lista-pasos { grid-template-columns: 1fr; }
+    .alemania::before { background: linear-gradient(180deg, rgb(10 18 32 / .92), rgb(10 18 32 / .82)); }
+    form { grid-template-columns: 1fr; }
+    .pie { grid-template-columns: 1fr; gap: 32px; }
+    .flotante { right: 16px; bottom: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <!-- Coordenadas sacadas del logo original (IMG_1051). Más alto que el logo para que quepa el círculo del spinner -->
-  <svg class="logo" viewBox="140 290 1640 1345" role="img" aria-label="Logo de Coches Müller">
-    <defs>
-      <polygon id="M" stroke-width="14" stroke-linejoin="round"
-        points="962,640 1266,640 1300,905 1448,640 1752,640 1628,1282 1414,1282 1462,975 1290,1282 1152,1282 1120,972 1040,1282 828,1282"/>
-      <!-- Llanta como en el vídeo: aro, buje y 5 tornillos -->
-      <g id="rim" fill="var(--navy)">
-        <circle r="98" fill="none" stroke="var(--navy)" stroke-width="7"/>
-        <circle r="20"/>
-        <circle r="8" cx="0" cy="-55"/>
-        <circle r="8" cx="52" cy="-17"/>
-        <circle r="8" cx="32" cy="45"/>
-        <circle r="8" cx="-32" cy="45"/>
-        <circle r="8" cx="-52" cy="-17"/>
-      </g>
-      <g id="speed" stroke-width="14" stroke-linecap="round">
-        <line x1="-330" y1="-50" x2="-210" y2="-50"/>
-        <line x1="-360" y1="0" x2="-210" y2="0"/>
-        <line x1="-330" y1="50" x2="-210" y2="50"/>
-      </g>
-    </defs>
+<a class="salto" href="#contenido">Saltar al contenido</a>
 
-    <g id="scene">
-      <g id="m" fill="var(--white)" stroke="var(--white)">
-        <use href="#M" opacity=".1"/>
-        <use href="#M" opacity=".2"/>
-        <use href="#M" opacity=".3"/>
-        <use href="#M" opacity=".4"/>
-        <use href="#M" opacity=".5"/>
-        <use href="#M"/>
-      </g>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Logo: las coordenadas del logo original (IMG_1051) -->
+    <symbol id="logo" viewBox="140 600 1640 760">
+      <circle cx="320" cy="966" r="154" fill="#fff"/>
+      <circle cx="678" cy="966" r="154" fill="#ff6b2c"/>
+      <polygon fill="#fff" stroke="#fff" stroke-width="14" stroke-linejoin="round" points="962,640 1266,640 1300,905 1448,640 1752,640 1628,1282 1414,1282 1462,975 1290,1282 1152,1282 1120,972 1040,1282 828,1282"/>
+    </symbol>
+    <symbol id="flecha" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
 
-      <!-- Cada rueda cuelga de un centro de giro en mitad de la M: ángulo (giro) y distancia (radio) -->
-      <g transform="translate(1290 966)"><g class="spin"><g class="loop"><g class="rad" transform="translate(-612 0)">
-        <g class="wheel"><g><g>
-          <use class="speed" href="#speed" stroke="var(--orange)"/>
-          <g><circle r="154" fill="var(--orange)"/><use class="rim" href="#rim"/></g>
-        </g></g></g>
-      </g></g></g></g>
-      <g transform="translate(1290 966)"><g class="spin"><g class="loop"><g class="rad" transform="translate(-970 0)">
-        <g class="wheel"><g><g>
-          <use class="speed" href="#speed" stroke="var(--white)"/>
-          <g><circle r="154" fill="var(--white)"/><use class="rim" href="#rim"/></g>
-        </g></g></g>
-      </g></g></g></g>
-    </g>
-  </svg>
-  <div class="text">
-    <h1 aria-label="Coches Müller">COCHES <span>M<span class="u">U</span>LLER</span></h1>
-    <p>PRONTO EMPEZAREMOS<span class="dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i></span></p>
-    <a class="contact" href="mailto:info@cochesmuller.com">info@cochesmuller.com</a>
+<header class="cabecera">
+  <div class="envoltura">
+    <button class="boton-menu" aria-expanded="false" aria-controls="menu">
+      <span class="hamburguesa" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="rotulo">MENÚ</span>
+    </button>
+    <a class="marca" href="#inicio" aria-label="Coches Müller, inicio">
+      <svg viewBox="0 0 1640 760" aria-hidden="true"><use href="#logo"/></svg>
+      <span>COCHES MÜLLER</span>
+    </a>
+    <a class="cta-cabecera" href="#carta"><span class="puntos" aria-hidden="true"><i></i><i></i></span>Coche a la carta</a>
   </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Menú principal">
+  <div class="envoltura">
+    <ul>
+      <li><a class="titular" href="#inicio"><small>01</small>Inicio</a></li>
+      <li><a class="titular" href="#servicios"><small>02</small>Qué hacemos</a></li>
+      <li><a class="titular" href="#como"><small>03</small>Cómo trabajamos</a></li>
+      <li><a class="titular" href="#alemania"><small>04</small>Por qué Alemania</a></li>
+      <li><a class="titular" href="#carta"><small>05</small>Coche a la carta</a></li>
+    </ul>
+    <p class="contacto-menu">Escríbenos: <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></p>
+  </div>
+</nav>
+
+<main id="contenido">
+  <section class="portada" id="inicio">
+    <picture>
+      <img src="img/portada-1000.webp" srcset="img/portada-1000.webp 1000w, img/portada-2000.webp 2000w" sizes="100vw" width="2000" height="1326" alt="Coche blanco con los faros encendidos en una carretera de noche, entre la niebla" fetchpriority="high">
+    </picture>
+    <div class="velo" aria-hidden="true"></div>
+    <div class="envoltura">
+      <div class="texto">
+        <h1 class="titular">Tu próximo coche,<br><em>traído de Alemania.</em></h1>
+        <p>Buscamos, revisamos y traemos coches de ocasión de Alemania y de España. Tú eliges el coche; nosotros nos ocupamos de todo lo demás.</p>
+        <div class="acciones">
+          <a class="boton boton-lleno" href="#carta">Coche a la carta</a>
+          <a class="boton boton-borde" href="#como">Cómo trabajamos</a>
+        </div>
+      </div>
+    </div>
+    <a class="bajar" href="#nosotros" aria-label="Bajar"></a>
+  </section>
+
+  <section class="intro" id="nosotros">
+    <div class="envoltura">
+      <h2 class="titular rev">Más coche por tu dinero.<br><em>Sin papeleos ni sorpresas.</em></h2>
+      <div class="lado rev">
+        <p>En Coches Müller buscamos coches de ocasión en Alemania y en España, los comparamos con lo que cuestan aquí y solo te proponemos los que de verdad compensan.</p>
+        <p>Del resto nos encargamos nosotros: la revisión, el transporte, los impuestos, la ITV y la matriculación. Tú solo tienes que venir a por las llaves.</p>
+        <p class="firma"><span class="puntos" aria-hidden="true"><i></i><i></i></span><span aria-label="Coches Müller">COCHES M<span class="u">U</span>LLER</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="servicios" id="servicios" aria-label="Qué hacemos">
+    <div class="tarjetas">
+      <a class="tarjeta rev" href="#carta">
+        <img src="img/coche-a-la-carta.webp" width="900" height="1125" loading="lazy" alt="Mano sujetando la llave de un coche junto a un coche plateado">
+        <h3 class="titular">Coche a la carta</h3>
+        <p>Dinos qué coche buscas y cuánto quieres gastar. Lo encontramos, lo revisamos y te lo dejamos listo para conducir.</p>
+        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
+      </a>
+      <a class="tarjeta rev" href="#alemania">
+        <img src="img/importacion.webp" width="900" height="692" loading="lazy" alt="Camión portacoches cargado de coches nuevos en una autopista">
+        <h3 class="titular">Importación desde Alemania</h3>
+        <p>El mayor mercado de coches de ocasión de Europa. Nos ocupamos del transporte, los impuestos y la homologación.</p>
+        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
+      </a>
+      <a class="tarjeta rev" href="#como">
+        <img src="img/revision.webp" width="900" height="600" loading="lazy" alt="Mecánico revisando el motor de un coche con el capó abierto">
+        <h3 class="titular">Revisado y con garantía</h3>
+        <p>Cada coche pasa una revisión antes de la entrega y sale con al menos 12 meses de garantía.</p>
+        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="pasos" id="como">
+    <div class="envoltura">
+      <div class="cabeza rev">
+        <div>
+          <p class="antetitulo">Paso a paso</p>
+          <h2 class="titular">Cómo trabajamos</h2>
+        </div>
+        <p>Un proceso claro, sin letra pequeña: sabes en todo momento en qué punto está tu coche y cuánto te va a costar.</p>
+      </div>
+      <ol class="lista-pasos">
+        <li class="rev"><h3>Nos cuentas qué buscas</h3><p>Marca, modelo, año, kilómetros y presupuesto. Si no lo tienes claro, te asesoramos.</p></li>
+        <li class="rev"><h3>Lo buscamos y comparamos</h3><p>Rastreamos anuncios en Alemania y en España y te enseñamos cuánto cuesta cada opción puesta aquí.</p></li>
+        <li class="rev"><h3>Revisión, transporte y papeles</h3><p>Revisamos el coche, lo traemos y nos ocupamos de impuestos, ITV y matriculación.</p></li>
+        <li class="rev"><h3>Te lo entregamos</h3><p>Listo para conducir, con sus papeles en regla y su garantía.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="alemania" id="alemania">
+    <img src="img/autopista.webp" width="1800" height="1200" loading="lazy" alt="">
+    <div class="envoltura">
+      <div class="bloque rev">
+        <p class="antetitulo">Por qué Alemania</p>
+        <h2 class="titular">Más oferta, mejor historial, mejor precio.</h2>
+        <ul>
+          <li><span><strong>Más donde elegir.</strong> Es el mercado de coches de ocasión más grande de Europa.</span></li>
+          <li><span><strong>Historial a la vista.</strong> Muchos coches llevan su libro de mantenimiento al día y kilómetros comprobables.</span></li>
+          <li><span><strong>Mejor equipados.</strong> Por el mismo dinero suelen traer más extras que aquí.</span></li>
+          <li><span><strong>Números claros.</strong> Antes de proponerte un coche, lo comparamos con lo que vale en España.</span></li>
+        </ul>
+        <a class="boton boton-lleno" href="#carta">Pide tu coche</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="franja" aria-hidden="true">
+    <div class="cinta">
+      <span>Te lo buscamos · Te lo revisamos · Te lo traemos ·</span><span>Te lo buscamos · Te lo revisamos · Te lo traemos ·</span>
+      <span>Te lo buscamos · Te lo revisamos · Te lo traemos ·</span><span>Te lo buscamos · Te lo revisamos · Te lo traemos ·</span>
+    </div>
+  </div>
+
+  <section class="carta" id="carta">
+    <img src="img/contacto.webp" width="1600" height="1067" loading="lazy" alt="">
+    <div class="envoltura">
+      <div class="rev">
+        <p class="antetitulo">Coche a la carta</p>
+        <h2 class="titular">Cuéntanos qué coche buscas.</h2>
+        <p class="explica">Rellena lo que sepas y te contestamos con opciones reales de Alemania y de España, con su precio puesto aquí.</p>
+        <div class="directo">
+          <span>O escríbenos directamente</span>
+          <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a>
+        </div>
+      </div>
+      <form class="rev" id="formulario" novalidate>
+        <label>Nombre<input name="nombre" autocomplete="name" required></label>
+        <label>Teléfono o email<input name="contacto" autocomplete="email" required></label>
+        <label class="ancho">Coche que buscas<input name="coche" placeholder="Ej.: Audi A3 Sportback, automático" required></label>
+        <label>Presupuesto máximo (€)<input name="presupuesto" inputmode="numeric" placeholder="Ej.: 20.000"></label>
+        <label>Año desde<input name="anio" inputmode="numeric" placeholder="Ej.: 2019"></label>
+        <label>Kilómetros máximos<input name="km" inputmode="numeric" placeholder="Ej.: 100.000"></label>
+        <label>Combustible / cambio<input name="extras" placeholder="Ej.: diésel, automático"></label>
+        <label class="ancho">Algo más que debamos saber<textarea name="comentarios" placeholder="Color, equipamiento, para cuándo lo necesitas…"></textarea></label>
+        <button class="boton boton-lleno" type="submit">Enviar solicitud</button>
+        <p class="nota" id="nota" aria-live="polite">Se abrirá tu correo con la solicitud lista para enviar.</p>
+      </form>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <div class="envoltura">
+    <div class="pie">
+      <div>
+        <a class="marca" href="#inicio" aria-label="Coches Müller, inicio"><svg viewBox="0 0 1640 760" aria-hidden="true"><use href="#logo"/></svg><span>COCHES MÜLLER</span></a>
+        <p>Coches de ocasión de Alemania y España, revisados y con garantía.</p>
+      </div>
+      <div>
+        <h3>Explora</h3>
+        <ul>
+          <li><a href="#servicios">Qué hacemos</a></li>
+          <li><a href="#como">Cómo trabajamos</a></li>
+          <li><a href="#alemania">Por qué Alemania</a></li>
+          <li><a href="#carta">Coche a la carta</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <ul>
+          <li><a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="anio">2026</span> Coches Müller</span>
+      <span>Fotos: Unsplash</span>
+    </div>
+  </div>
+</footer>
+
+<a class="flotante" href="#carta" aria-label="Pide tu coche a la carta">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+</a>
+
 <script>
-// Entrada con los tiempos y curvas medidos en el vídeo del logo (en segundos); se reproduce una vez y luego el spinner gira sin parar.
-const P = 4.1;
-const OUT3 = 'cubic-bezier(.33,1,.68,1)', OUT4 = 'cubic-bezier(.25,1,.5,1)', IO = 'cubic-bezier(.45,0,.55,1)';
+  document.getElementById('anio').textContent = new Date().getFullYear();
 
-// keys: [segundo, propiedades, curva hasta la siguiente]; antes de la primera y tras la última se mantiene el valor
-function play(el, keys) {
-  const f = keys.map(([t, props, easing = 'linear']) => ({ ...props, offset: t / P, easing }));
-  if (f[0].offset > 0) f.unshift({ ...f[0], offset: 0, easing: 'linear' });
-  const last = f[f.length - 1];
-  if (last.offset < 1) f.push({ ...last, offset: 1, easing: 'linear' });
-  el.animate(f, { duration: P * 1000, fill: 'both' });
-}
+  // Menú a pantalla completa: se cierra al elegir una sección o con Escape
+  const boton = document.querySelector('.boton-menu');
+  const abrir = (si) => {
+    document.body.classList.toggle('menu-abierto', si);
+    boton.setAttribute('aria-expanded', si);
+    document.body.style.overflow = si ? 'hidden' : '';
+  };
+  boton.addEventListener('click', () => abrir(boton.getAttribute('aria-expanded') !== 'true'));
+  document.querySelectorAll('.menu a').forEach((a) => a.addEventListener('click', () => abrir(false)));
+  addEventListener('keydown', (e) => e.key === 'Escape' && abrir(false));
 
-function wheel(g, enter, hop) {
-  const [x, y, s, roll] = [g, g.firstElementChild, g.firstElementChild.firstElementChild, g.querySelector('use + g')];
-  // Llega rodando por el suelo y frena; luego salta hasta su sitio
-  play(x, [[enter, { transform: 'translateX(-1201px)' }, OUT3], [enter + .65, { transform: 'translateX(-108px)' }],
-           [hop, { transform: 'translateX(-108px)' }, IO], [hop + .3, { transform: 'translateX(0px)' }]]);
-  play(roll, [[enter, { transform: 'rotate(-405deg)' }, OUT3], [enter + .65, { transform: 'rotate(0deg)' }]]);
-  play(g.querySelector('.speed'), [[enter, { opacity: .8 }, OUT3], [enter + .35, { opacity: 0 }]]);
-  // Salto con rebote tipo muelle (sube, se pasa, se aplasta al caer y se asienta)
-  play(y, [[0, { opacity: 0 }], [enter, { opacity: 0 }], [enter + .05, { opacity: 1 }]]);
-  play(y, [[hop, { transform: 'translateY(162px)' }, 'cubic-bezier(.3,.38,.65,1)'], [hop + .2, { transform: 'translateY(-46px)' }, IO],
-           [hop + .34, { transform: 'translateY(25px)' }, IO], [hop + .48, { transform: 'translateY(-7px)' }, IO], [hop + .62, { transform: 'translateY(0px)' }]]);
-  play(s, [[hop, { transform: 'scale(1, 1)' }, IO], [hop + .14, { transform: 'scale(.9, 1.11)' }, IO],
-           [hop + .34, { transform: 'scale(1.09, .92)' }, IO], [hop + .48, { transform: 'scale(.967, 1.045)' }, IO], [hop + .62, { transform: 'scale(1, 1)' }]]);
-  play(g.querySelector('.rim'), [[hop + .13, { opacity: 1 }], [hop + .23, { opacity: 0 }]]);
-}
+  // Aparición de los bloques al llegar a ellos
+  if (document.documentElement.classList.contains('js')) {
+    const vigia = new IntersectionObserver((entradas) => entradas.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('visto'); vigia.unobserve(e.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rev').forEach((el) => vigia.observe(el));
+  }
 
-// Spinner: la rueda se abre a una órbita de radio R alrededor de la M y acelera hasta girar a velocidad constante.
-// El acelerón (curva cuadrática, 120° en .8s) acaba justo a la velocidad del giro continuo (360° en 1.2s), así no hay tirón.
-const T = 3.1, R = 756, LAG = .15;
-function orbit(rig, r0, d) {
-  const [spin, loop, rad] = [rig, rig.firstElementChild, rig.firstElementChild.firstElementChild];
-  play(rad, [[T + d, { transform: `translateX(${-r0}px)` }, IO], [T + d + .8, { transform: `translateX(${-R}px)` }]]);
-  play(spin, [[T + d, { transform: 'rotate(0deg)' }, 'cubic-bezier(.11,0,.5,0)'], [T + d + .8, { transform: 'rotate(120deg)' }]]);
-  loop.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 1200, iterations: Infinity, delay: (T + d + .8) * 1000 });
-}
+  // El botón flotante sobra cuando ya estás en el formulario
+  const flotante = document.querySelector('.flotante');
+  new IntersectionObserver(([e]) => flotante.classList.toggle('oculto', e.isIntersecting), { threshold: 0.2 })
+    .observe(document.getElementById('carta'));
 
-if (document.documentElement.classList.contains('anim')) {
-  const m = document.getElementById('m');
-  // La M entra desde la izquierda; las copias van unos milisegundos detrás y hacen de estela
-  [...m.children].forEach((el, i, all) => {
-    const t = .3 + (all.length - 1 - i) * .004, op = +(el.getAttribute('opacity') ?? 1);
-    play(el, [[0, { transform: 'translateX(-2309px)', opacity: 0 }, 'step-end'], [t, { transform: 'translateX(-2309px)', opacity: op }, OUT4],
-              [t + .5, { transform: 'translateX(0px)', opacity: op }]]);
+  // Web estática: la solicitud se manda abriendo el correo del visitante con todo rellenado
+  const form = document.getElementById('formulario');
+  const nota = document.getElementById('nota');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(form));
+    const falta = ['nombre', 'contacto', 'coche'].find((k) => !String(d[k]).trim());
+    if (falta) {
+      nota.textContent = 'Rellena al menos tu nombre, cómo contactarte y el coche que buscas.';
+      form.elements[falta].focus();
+      return;
+    }
+    const lineas = [
+      ['Nombre', d.nombre], ['Contacto', d.contacto], ['Coche', d.coche], ['Presupuesto máximo', d.presupuesto],
+      ['Año desde', d.anio], ['Kilómetros máximos', d.km], ['Combustible / cambio', d.extras], ['Comentarios', d.comentarios],
+    ].filter(([, v]) => String(v).trim()).map(([k, v]) => `${k}: ${String(v).trim()}`);
+    location.href = `mailto:info@cochesmuller.com?subject=${encodeURIComponent('Coche a la carta: ' + d.coche.trim())}&body=${encodeURIComponent(lineas.join('\n'))}`;
+    nota.textContent = 'Listo: revisa el correo que se ha abierto y pulsa enviar.';
   });
-  const [orange, white] = document.querySelectorAll('.wheel');
-  wheel(orange, 1.033, 1.7);
-  wheel(white, 1.6, 2.25);
-  // Una vez montado el logo: la M se va al centro y se reduce un poco para que las ruedas giren a su alrededor
-  play(document.getElementById('scene'), [
-    [T, { transform: 'translate(0px, 0px) translate(1290px, 961px) scale(1) translate(-1290px, -961px)' }, IO],
-    [T + .8, { transform: 'translate(-331px, 0px) translate(1290px, 961px) scale(.72) translate(-1290px, -961px)' }]]);
-  const [o, w] = document.querySelectorAll('.spin');
-  orbit(o, 612, 0);
-  orbit(w, 970, LAG);
-  play(document.querySelector('.logo'), [[0, { opacity: 1 }]]);
-}
 </script>
 </body>
 </html>
