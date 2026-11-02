@@ -89,16 +89,17 @@
   .menu .contacto-menu a { font-weight: 600; }
 
   /* ---------- Portada ---------- */
-  .portada { position: relative; min-height: 100svh; display: grid; align-items: end; padding: calc(var(--cab) + 40px) 0 clamp(48px, 9vh, 96px); isolation: isolate; overflow: hidden; }
+  /* El texto va centrado en la parte alta (niebla y farolas) para que el coche quede despejado debajo */
+  .portada { position: relative; min-height: 100svh; display: grid; align-items: start; padding: calc(var(--cab) + clamp(56px, 11vh, 130px)) 0 clamp(48px, 9vh, 96px); isolation: isolate; overflow: hidden; }
   .portada picture, .portada .velo { position: absolute; inset: 0; z-index: -1; }
-  .portada img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; animation: acercar 14s ease-out both; }
+  .portada img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 32%; animation: acercar 14s ease-out both; }
   @keyframes acercar { from { transform: scale(1.08); } to { transform: scale(1); } }
-  .portada .velo { background: linear-gradient(180deg, rgb(15 26 44 / .35) 0%, rgb(15 26 44 / .05) 35%, rgb(15 26 44 / .55) 70%, rgb(15 26 44 / .95) 100%); }
-  .portada .texto { text-align: right; justify-self: end; max-width: 820px; }
-  .portada h1 { font-size: clamp(40px, 6.4vw, 92px); text-shadow: 0 2px 30px rgb(0 0 0 / .35); }
+  .portada .velo { background: linear-gradient(180deg, rgb(15 26 44 / .6) 0%, rgb(15 26 44 / .25) 45%, rgb(15 26 44 / .35) 75%, rgb(15 26 44 / .95) 100%); }
+  .portada .texto { text-align: center; margin-inline: auto; max-width: 1100px; }
+  .portada h1 { font-size: clamp(38px, 5.8vw, 86px); text-shadow: 0 2px 30px rgb(0 0 0 / .45); }
   .portada h1 em { color: var(--naranja); font-style: inherit; }
-  .portada p { margin: 22px 0 0 auto; max-width: 560px; font-size: clamp(16px, 1.6vw, 19px); color: rgb(255 255 255 / .88); }
-  .portada .acciones { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: flex-end; }
+  .portada p { margin: 22px auto 0; max-width: 620px; font-size: clamp(16px, 1.6vw, 19px); color: rgb(255 255 255 / .9); text-shadow: 0 1px 12px rgb(0 0 0 / .5); }
+  .portada .acciones { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
   .bajar { position: absolute; left: 50%; bottom: 22px; translate: -50% 0; width: 26px; height: 42px; border: 1.5px solid rgb(255 255 255 / .6); border-radius: 14px; }
   .bajar::after { content: ''; position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--naranja); animation: rueda 1.8s infinite; }
   @keyframes rueda { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
@@ -217,10 +218,8 @@
     .boton-menu { justify-self: end; }
     .boton-menu .rotulo { order: -1; }
     .cta-cabecera { display: none; }
-    .portada .texto { text-align: left; justify-self: start; }
-    .portada p { margin-left: 0; }
-    .portada .acciones { justify-content: flex-start; }
-    .portada img { object-position: 46% 55%; }
+    .portada { padding-top: calc(var(--cab) + 48px); }
+    .portada img { object-position: 46% 40%; }
     .bajar { display: none; }
     .intro .envoltura, .carta .envoltura { grid-template-columns: 1fr; }
     .tarjetas { grid-template-columns: 1fr; gap: 16px; width: calc(100% - 32px); margin-inline: auto; }
