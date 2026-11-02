@@ -129,7 +129,8 @@
   .tarjeta::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(10 18 32 / .15) 0%, rgb(10 18 32 / .55) 45%, rgb(10 18 32 / .94) 100%); transition: background .4s; }
   .tarjeta h3 { font-size: clamp(26px, 2.4vw, 34px); }
   .tarjeta p { margin-top: 12px; color: rgb(255 255 255 / .85); max-width: 34ch; }
-  .tarjeta .flecha { margin-top: 26px; align-self: flex-end; }
+  .tarjeta .num { position: absolute; top: 30px; left: 36px; font-weight: 800; font-style: italic; font-size: 54px; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--naranja); }
+  .tarjeta .mas { margin-top: 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-weight: 600; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; border-top: 1px solid rgb(255 255 255 / .18); padding-top: 18px; }
   .tarjeta:hover img { transform: scale(1.06); }
   .tarjeta:hover .flecha { background: var(--naranja); border-color: var(--naranja); color: var(--navy); transform: rotate(-45deg); }
 
@@ -175,7 +176,9 @@
   form { background: var(--navy-2); border: 1px solid rgb(255 255 255 / .08); border-radius: 22px; padding: clamp(24px, 3vw, 40px); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; box-shadow: 0 30px 80px -40px rgb(0 0 0 / .7); }
   label { display: grid; gap: 7px; font-size: 14px; font-weight: 500; color: rgb(255 255 255 / .75); }
   .ancho { grid-column: 1 / -1; }
-  input, textarea { font: inherit; font-size: 16px; color: var(--blanco); background: var(--navy); border: 1px solid rgb(255 255 255 / .14); border-radius: 12px; padding: 13px 14px; width: 100%; transition: border-color .2s, box-shadow .2s; }
+  input, textarea, select { font: inherit; font-size: 16px; color: var(--blanco); background: var(--navy); border: 1px solid rgb(255 255 255 / .14); border-radius: 12px; padding: 13px 14px; width: 100%; transition: border-color .2s, box-shadow .2s; }
+  select { appearance: none; cursor: pointer; padding-right: 44px; background: var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='%23ff6b2c' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center / 18px; }
+  select:focus { outline: none; border-color: var(--naranja); box-shadow: 0 0 0 3px rgb(255 107 44 / .25); }
   input::placeholder, textarea::placeholder { color: rgb(255 255 255 / .35); }
   input:focus, textarea:focus { outline: none; border-color: var(--naranja); box-shadow: 0 0 0 3px rgb(255 107 44 / .25); }
   textarea { resize: vertical; min-height: 104px; }
@@ -299,7 +302,7 @@
         <p class="apoyo">Coches modernos seleccionados en Alemania, revisados en persona y listos para conducir.</p>
         <div class="acciones">
           <a class="boton boton-lleno" href="#contacto">Escríbenos</a>
-          <a class="boton boton-borde" href="#servicios">Qué hacemos</a>
+          <a class="boton boton-borde" href="#servicios">Nuestros servicios</a>
         </div>
         <p class="zona">O Morrazo · Pontevedra</p>
       </div>
@@ -311,28 +314,31 @@
     <div class="envoltura cabeza rev">
       <div>
         <p class="antetitulo">Nuestros servicios</p>
-        <h2 class="titular">De Alemania a tu puerta.</h2>
+        <h2 class="titular">Tres formas de conseguir tu coche.</h2>
       </div>
-      <p>Nos encargamos de todo el proceso para que tú solo tengas que elegir y conducir.</p>
+      <p>Llévate uno de nuestros coches, encárganos el que buscas o déjate asesorar para importarlo tú.</p>
     </div>
     <div class="tarjetas">
-      <a class="tarjeta rev" href="#como">
+      <a class="tarjeta rev" href="#contacto" data-servicio="compraventa">
         <img src="img/coche-a-la-carta.webp" width="900" height="1125" loading="lazy" alt="Mano sujetando la llave de un coche junto a un coche plateado">
-        <h3 class="titular">Seleccionados en Alemania</h3>
-        <p>Buscamos coches modernos y fiables de particulares y concesionarios alemanes. Solo los que compraríamos para nosotros.</p>
-        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
+        <span class="num" aria-hidden="true">01</span>
+        <h3 class="titular">Compraventa de coches importados</h3>
+        <p>Coches modernos y fiables traídos de Alemania, revisados en persona y listos para conducir, con 12 meses de garantía.</p>
+        <span class="mas">Me interesa <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span></span>
       </a>
-      <a class="tarjeta rev" href="#compromiso">
-        <img src="img/revision.webp" width="900" height="600" loading="lazy" alt="Mecánico revisando el motor de un coche con el capó abierto">
-        <h3 class="titular">Revisados en persona</h3>
-        <p>Vamos a ver cada coche antes de comprarlo y lo revisamos a fondo: mecánica, mantenimiento y kilómetros.</p>
-        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
-      </a>
-      <a class="tarjeta rev" href="#contacto">
+      <a class="tarjeta rev" href="#contacto" data-servicio="importacion">
         <img src="img/importacion.webp" width="900" height="692" loading="lazy" alt="Camión portacoches cargado de coches en una autopista">
-        <h3 class="titular">Listos para conducir</h3>
-        <p>Lo traemos a España y nos ocupamos de impuestos, ITV y matriculación. Te lo entregamos con 12 meses de garantía.</p>
-        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
+        <span class="num" aria-hidden="true">02</span>
+        <h3 class="titular">Importación a la carta</h3>
+        <p>¿Buscas un coche concreto? Lo encontramos en Alemania, lo revisamos, lo traemos y lo matriculamos por ti. Tú solo eliges.</p>
+        <span class="mas">Encargar mi coche <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span></span>
+      </a>
+      <a class="tarjeta rev" href="#contacto" data-servicio="consultoria">
+        <img src="img/revision.webp" width="900" height="600" loading="lazy" alt="Mecánico revisando el motor de un coche con el capó abierto">
+        <span class="num" aria-hidden="true">03</span>
+        <h3 class="titular">Consultoría de coches e importación</h3>
+        <p>Te asesoramos para elegir bien: qué modelo comprar, qué revisar, cuánto te costará ponerlo aquí y todos los trámites para importarlo.</p>
+        <span class="mas">Pedir asesoramiento <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span></span>
       </a>
     </div>
   </section>
@@ -388,8 +394,8 @@
 
   <div class="franja" aria-hidden="true">
     <div class="cinta">
-      <span>Seleccionados en Alemania · Revisados en persona · Listos para conducir ·</span><span>Seleccionados en Alemania · Revisados en persona · Listos para conducir ·</span>
-      <span>Seleccionados en Alemania · Revisados en persona · Listos para conducir ·</span><span>Seleccionados en Alemania · Revisados en persona · Listos para conducir ·</span>
+      <span>Compraventa de importados · Importación a la carta · Consultoría ·</span><span>Compraventa de importados · Importación a la carta · Consultoría ·</span>
+      <span>Compraventa de importados · Importación a la carta · Consultoría ·</span><span>Compraventa de importados · Importación a la carta · Consultoría ·</span>
     </div>
   </div>
 
@@ -398,14 +404,22 @@
     <div class="envoltura">
       <div class="rev">
         <p class="antetitulo">Contacto</p>
-        <h2 class="titular">¿Te interesa un coche?</h2>
-        <p class="explica">Cuéntanos qué buscas y te respondemos con opciones reales. Atendemos en O Morrazo y en toda la provincia de Pontevedra.</p>
+        <h2 class="titular">Hablemos de tu coche.</h2>
+        <p class="explica">Cuéntanos qué necesitas: uno de nuestros coches, uno por encargo o que te asesoremos. Atendemos en O Morrazo y en toda la provincia de Pontevedra.</p>
         <div class="directo">
           <span>O escríbenos directamente</span>
           <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a>
         </div>
       </div>
       <form class="rev" id="formulario" novalidate>
+        <label class="ancho">¿Qué te interesa?
+          <select name="servicio">
+            <option value="compraventa">Comprar uno de vuestros coches</option>
+            <option value="importacion">Importación a la carta</option>
+            <option value="consultoria">Consultoría de coches e importación</option>
+            <option value="otra">Otra consulta</option>
+          </select>
+        </label>
         <label>Nombre<input name="nombre" autocomplete="name" required></label>
         <label>Teléfono o email<input name="contacto" autocomplete="email" required></label>
         <label class="ancho">¿Qué coche te interesa o buscas?<input name="coche" placeholder="Ej.: Audi A3 Sportback automático" required></label>
@@ -482,6 +496,9 @@
 
   // Web estática: la solicitud se manda abriendo el correo del visitante con todo rellenado
   const form = document.getElementById('formulario');
+  // Al pulsar una tarjeta de servicio, el formulario ya llega con ese servicio elegido
+  document.querySelectorAll('[data-servicio]').forEach((t) =>
+    t.addEventListener('click', () => { form.elements.servicio.value = t.dataset.servicio; }));
   const nota = document.getElementById('nota');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -492,10 +509,11 @@
       form.elements[falta].focus();
       return;
     }
+    const servicio = form.elements.servicio.selectedOptions[0].textContent;
     const lineas = [
-      ['Nombre', d.nombre], ['Contacto', d.contacto], ['Coche', d.coche], ['Presupuesto', d.presupuesto], ['Comentarios', d.comentarios],
+      ['Me interesa', servicio], ['Nombre', d.nombre], ['Contacto', d.contacto], ['Coche', d.coche], ['Presupuesto', d.presupuesto], ['Comentarios', d.comentarios],
     ].filter(([, v]) => String(v ?? '').trim()).map(([k, v]) => `${k}: ${String(v).trim()}`);
-    location.href = `mailto:info@cochesmuller.com?subject=${encodeURIComponent('Consulta web: ' + d.coche.trim())}&body=${encodeURIComponent(lineas.join('\n'))}`;
+    location.href = `mailto:info@cochesmuller.com?subject=${encodeURIComponent(`${servicio}: ${d.coche.trim()}`)}&body=${encodeURIComponent(lineas.join('\n'))}`;
     nota.textContent = 'Listo: revisa el correo que se ha abierto y pulsa enviar.';
   });
 </script>
