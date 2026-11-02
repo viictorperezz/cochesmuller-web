@@ -142,9 +142,29 @@
   .valoracion { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; font-weight: 600; font-size: 15px; color: var(--navy); }
   .valoracion .estrellas { color: #f5a524; letter-spacing: 2px; font-size: 18px; }
   .coche { display: grid; grid-template-columns: 1.05fr 1fr; background: var(--blanco); border-radius: 22px; overflow: hidden; box-shadow: 0 1px 0 rgb(15 26 44 / .06), 0 30px 60px -32px rgb(15 26 44 / .45); }
-  .coche .foto { position: relative; min-height: 380px; display: grid; place-items: center; align-content: center; gap: 16px; background: radial-gradient(circle at 30% 20%, #23365a 0%, var(--navy) 60%); color: rgb(255 255 255 / .75); text-align: center; padding: 32px; }
-  .coche .foto svg { width: 140px; opacity: .9; }
-  .coche .foto span { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
+  /* Galería: foto grande con flechas y contador, miniaturas debajo; al pulsar se abre el visor */
+  .galeria { background: var(--navy); min-width: 0; }
+  .marco { position: relative; }
+  .galeria .principal { display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; background: #000; cursor: zoom-in; overflow: hidden; }
+  .galeria .principal img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 68%; }
+  .nav { position: absolute; top: 50%; translate: 0 -50%; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; border: 1.5px dashed rgb(255 255 255 / .85); background: rgb(15 26 44 / .55); color: var(--blanco); cursor: pointer; backdrop-filter: blur(4px); transition: background .2s, border-color .2s; }
+  .nav:hover { background: var(--naranja); border-color: var(--naranja); color: var(--navy); }
+  .nav svg { width: 22px; height: 22px; }
+  .nav.ant { left: 14px; } .nav.ant svg { transform: scaleX(-1); }
+  .nav.sig { right: 14px; }
+  .contador { position: absolute; right: 14px; bottom: 14px; padding: 4px 12px; border-radius: 999px; background: rgb(15 26 44 / .78); color: var(--blanco); font-size: 14px; font-weight: 600; }
+  .miniaturas { display: flex; gap: 8px; padding: 10px; overflow-x: auto; scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / .3) transparent; }
+  .miniaturas button { flex: 0 0 60px; height: 80px; padding: 0; border: 2px solid transparent; border-radius: 8px; overflow: hidden; background: none; cursor: pointer; opacity: .55; transition: opacity .2s, border-color .2s; }
+  .miniaturas button:hover { opacity: .9; }
+  .miniaturas button[aria-current="true"] { border-color: var(--naranja); opacity: 1; }
+  .miniaturas img { width: 100%; height: 100%; object-fit: cover; }
+  .visor { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; }
+  .visor::backdrop { background: rgb(5 10 20 / .94); }
+  .visor[open] { display: grid; place-items: center; }
+  .visor img { max-width: 94vw; max-height: 88dvh; width: auto; height: auto; border-radius: 10px; }
+  .visor .cerrar { position: absolute; top: 16px; right: 18px; width: 48px; height: 48px; border-radius: 50%; border: 1.5px dashed rgb(255 255 255 / .85); background: rgb(15 26 44 / .55); color: var(--blanco); font-size: 30px; line-height: 1; cursor: pointer; }
+  .visor .cerrar:hover { background: var(--naranja); border-color: var(--naranja); color: var(--navy); }
+  .visor .contador { right: 50%; translate: 50% 0; bottom: 18px; }
   .coche .estado { position: absolute; top: 20px; left: 20px; background: var(--naranja); color: var(--navy); font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; }
   .coche .datos { padding: clamp(26px, 3vw, 42px); display: grid; gap: 18px; align-content: start; }
   .coche h3 { font-size: clamp(28px, 2.6vw, 38px); }
@@ -206,17 +226,21 @@
   input::placeholder, textarea::placeholder { color: rgb(255 255 255 / .35); }
   input:focus, textarea:focus { outline: none; border-color: var(--naranja); box-shadow: 0 0 0 3px rgb(255 107 44 / .25); }
   textarea { resize: vertical; min-height: 104px; }
-  form .boton { justify-self: start; border: 0; cursor: pointer; font-family: inherit; }
-  .nota { font-size: 14px; color: rgb(255 255 255 / .55); align-self: center; }
+  form .boton { grid-column: 1 / -1; justify-self: start; border: 0; cursor: pointer; font-family: inherit; white-space: nowrap; }
+  .nota { grid-column: 1 / -1; font-size: 14px; color: rgb(255 255 255 / .55); margin-top: -4px; }
 
   /* ---------- WhatsApp ---------- */
   .icono-wa { width: 18px; height: 18px; flex: none; }
   .cta-cabecera .icono-wa { width: 20px; height: 20px; color: #25d366; }
-  .boton-wa { margin-top: 30px; display: inline-flex; align-items: center; gap: 16px; padding: 14px 26px 14px 16px; border-radius: 18px; background: #25d366; color: #06301a; text-decoration: none; box-shadow: 0 14px 34px -14px rgb(37 211 102 / .7); transition: transform .2s, background .2s; }
-  .boton-wa:hover { background: #2ee374; transform: translateY(-2px); }
-  .boton-wa svg { width: 40px; height: 40px; }
-  .boton-wa small { display: block; font-size: 14px; font-weight: 500; }
-  .boton-wa strong { display: block; font-size: 26px; font-weight: 800; font-style: italic; letter-spacing: .02em; line-height: 1.1; }
+  /* Tarjeta de WhatsApp con el estilo de la web: fondo navy, icono en círculo verde y flecha discontinua */
+  .boton-wa { margin-top: 30px; display: flex; align-items: center; gap: 18px; max-width: 470px; padding: 16px 16px 16px 16px; border-radius: 20px; background: var(--navy-2); border: 1px solid rgb(255 255 255 / .12); text-decoration: none; transition: border-color .25s, transform .25s; }
+  .boton-wa:hover { border-color: #25d366; transform: translateY(-2px); }
+  .circulo-wa { width: 56px; height: 56px; flex: none; border-radius: 50%; background: #25d366; color: var(--blanco); display: grid; place-items: center; box-shadow: 0 8px 22px -10px rgb(37 211 102 / .9); }
+  .circulo-wa svg { width: 30px; height: 30px; }
+  .texto-wa small { display: block; font-size: 14px; color: rgb(255 255 255 / .65); }
+  .texto-wa strong { display: block; margin-top: 2px; font-size: clamp(22px, 2vw, 26px); font-weight: 800; font-style: italic; letter-spacing: .02em; line-height: 1.1; white-space: nowrap; }
+  .boton-wa .flecha { margin-left: auto; color: rgb(255 255 255 / .8); }
+  .boton-wa:hover .flecha { background: #25d366; border-color: #25d366; color: var(--navy); transform: rotate(-45deg); }
 
   /* ---------- Redes sociales ---------- */
   .redes-portada { margin-top: 18px; display: flex; gap: 12px; justify-content: center; }
@@ -290,7 +314,7 @@
     .tarjetas { grid-template-columns: 1fr; gap: 16px; width: calc(100% - 32px); margin-inline: auto; }
     .tarjeta { min-height: 420px; border-radius: 18px; padding: 26px; }
     .coche { grid-template-columns: 1fr; }
-    .coche .foto { min-height: 240px; }
+    .galeria .principal { aspect-ratio: 4 / 5; }
     .destacados { grid-template-columns: 1fr; }
     .lista-pasos { grid-template-columns: 1fr; }
     .alemania::before { background: linear-gradient(180deg, rgb(10 18 32 / .92), rgb(10 18 32 / .82)); }
@@ -426,10 +450,29 @@
       </div>
 
       <article class="coche rev">
-        <div class="foto">
-          <span class="estado">Disponible</span>
-          <svg viewBox="0 0 1640 760" aria-hidden="true"><use href="#logo"/></svg>
-          <span>Fotos en el anuncio</span>
+        <div class="galeria">
+          <div class="marco">
+            <button class="principal" type="button" aria-label="Ver la foto en grande">
+              <img src="img/coches/audi-a3-cabrio/01.webp" width="1080" height="1440" loading="lazy" alt="Audi A3 Cabrio negro descapotado, de lado, junto al mar">
+            </button>
+            <span class="estado">Disponible</span>
+            <button class="nav ant" type="button" aria-label="Foto anterior"><svg aria-hidden="true"><use href="#flecha"/></svg></button>
+            <button class="nav sig" type="button" aria-label="Foto siguiente"><svg aria-hidden="true"><use href="#flecha"/></svg></button>
+            <span class="contador" aria-live="polite">1 / 11</span>
+          </div>
+          <div class="miniaturas">
+            <button type="button" aria-current="true" data-foto="img/coches/audi-a3-cabrio/01.webp" data-alt="Audi A3 Cabrio negro descapotado, de lado, junto al mar"><img src="img/coches/audi-a3-cabrio/01-mini.webp" width="270" height="360" loading="lazy" alt="Foto 1"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/02.webp" data-alt="Vista delantera de tres cuartos con la capota puesta"><img src="img/coches/audi-a3-cabrio/02-mini.webp" width="270" height="360" loading="lazy" alt="Foto 2"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/03.webp" data-alt="Frontal con la parrilla y los faros de xenón"><img src="img/coches/audi-a3-cabrio/03-mini.webp" width="270" height="360" loading="lazy" alt="Foto 3"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/04.webp" data-alt="Trasera con la capota puesta"><img src="img/coches/audi-a3-cabrio/04-mini.webp" width="270" height="360" loading="lazy" alt="Foto 4"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/05.webp" data-alt="Detalle del faro y del paragolpes delantero RS3"><img src="img/coches/audi-a3-cabrio/05-mini.webp" width="270" height="360" loading="lazy" alt="Foto 5"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/06.webp" data-alt="Interior visto desde arriba con la capota abierta"><img src="img/coches/audi-a3-cabrio/06-mini.webp" width="270" height="360" loading="lazy" alt="Foto 6"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/07.webp" data-alt="Asientos delanteros de cuero y alcántara"><img src="img/coches/audi-a3-cabrio/07-mini.webp" width="270" height="360" loading="lazy" alt="Foto 7"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/08.webp" data-alt="Salpicadero y volante"><img src="img/coches/audi-a3-cabrio/08-mini.webp" width="270" height="360" loading="lazy" alt="Foto 8"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/09.webp" data-alt="Acceso al habitáculo y asiento del conductor"><img src="img/coches/audi-a3-cabrio/09-mini.webp" width="270" height="360" loading="lazy" alt="Foto 9"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/10.webp" data-alt="Volante multifunción"><img src="img/coches/audi-a3-cabrio/10-mini.webp" width="270" height="360" loading="lazy" alt="Foto 10"></button>
+            <button type="button" data-foto="img/coches/audi-a3-cabrio/11.webp" data-alt="Cuadro de instrumentos con los kilómetros"><img src="img/coches/audi-a3-cabrio/11-mini.webp" width="270" height="360" loading="lazy" alt="Foto 11"></button>
+          </div>
         </div>
         <div class="datos">
           <h3 class="titular">Audi A3 Cabrio</h3>
@@ -449,7 +492,7 @@
           </ul>
           <div class="acciones">
             <a class="boton boton-lleno" href="https://wa.me/34722873925" data-wa="Hola, me interesa el Audi A3 Cabrio de 2011 (10.990 €) que tenéis en la web." target="_blank" rel="noopener"><svg class="icono-wa" aria-hidden="true"><use href="#wa"/></svg>Me interesa</a>
-            <a class="boton boton-oscuro" href="https://es.wallapop.com/item/audi-a3-descapotable-full-extras-1319574176" target="_blank" rel="noopener">Ver fotos en Wallapop</a>
+            <a class="boton boton-oscuro" href="https://es.wallapop.com/item/audi-a3-descapotable-full-extras-1319574176" target="_blank" rel="noopener">Comprar en Wallapop</a>
           </div>
         </div>
       </article>
@@ -520,8 +563,9 @@
         <h2 class="titular">Hablemos de tu coche.</h2>
         <p class="explica">Cuéntanos qué necesitas: uno de nuestros coches, uno por encargo o que te asesoremos. Atendemos en O Morrazo y en toda la provincia de Pontevedra.</p>
         <a class="boton-wa" href="https://wa.me/34722873925" data-wa="Hola, os escribo desde la web de Coches Müller." target="_blank" rel="noopener">
-          <svg aria-hidden="true"><use href="#wa"/></svg>
-          <span><small>Escríbenos por WhatsApp, cuando quieras</small><strong>+34 722 87 39 25</strong></span>
+          <span class="circulo-wa"><svg aria-hidden="true"><use href="#wa"/></svg></span>
+          <span class="texto-wa"><small>WhatsApp · escríbenos cuando quieras</small><strong>+34 722 87 39 25</strong></span>
+          <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
         </a>
         <div class="directo">
           <span>O por correo</span>
@@ -557,6 +601,15 @@
     </div>
   </section>
 </main>
+
+<!-- Visor de fotos a pantalla completa (galería del coche) -->
+<dialog class="visor" aria-label="Fotos del coche">
+  <img src="" alt="">
+  <button class="cerrar" type="button" aria-label="Cerrar">×</button>
+  <button class="nav ant" type="button" aria-label="Foto anterior"><svg aria-hidden="true"><use href="#flecha"/></svg></button>
+  <button class="nav sig" type="button" aria-label="Foto siguiente"><svg aria-hidden="true"><use href="#flecha"/></svg></button>
+  <span class="contador"></span>
+</dialog>
 
 <footer>
   <div class="envoltura">
@@ -625,6 +678,49 @@
   const flotante = document.querySelector('.flotante');
   new IntersectionObserver(([e]) => flotante.classList.toggle('oculto', e.isIntersecting), { threshold: 0.2 })
     .observe(document.getElementById('contacto'));
+
+  // Galería del coche: flechas, miniaturas, deslizar con el dedo y visor a pantalla completa
+  document.querySelectorAll('.galeria').forEach((galeria) => {
+    const miniaturas = [...galeria.querySelectorAll('.miniaturas button')];
+    const principal = galeria.querySelector('.principal img');
+    const contador = galeria.querySelector('.contador');
+    const visor = document.querySelector('.visor');
+    const visorImg = visor.querySelector('img');
+    let actual = 0;
+    const mostrar = (i) => {
+      actual = (i + miniaturas.length) % miniaturas.length;
+      const { foto, alt } = miniaturas[actual].dataset;
+      principal.src = foto; principal.alt = alt;
+      contador.textContent = visor.querySelector('.contador').textContent = `${actual + 1} / ${miniaturas.length}`;
+      if (visor.open) { visorImg.src = foto; visorImg.alt = alt; }
+      miniaturas.forEach((b, j) => b.setAttribute('aria-current', j === actual));
+      // Desplaza solo la tira de miniaturas, nunca la página
+      const tira = miniaturas[actual].parentElement, b = miniaturas[actual];
+      tira.scrollTo({ left: b.offsetLeft - tira.clientWidth / 2 + b.clientWidth / 2, behavior: 'smooth' });
+      new Image().src = miniaturas[(actual + 1) % miniaturas.length].dataset.foto;
+    };
+    miniaturas.forEach((b, j) => b.addEventListener('click', () => mostrar(j)));
+    galeria.querySelector('.ant').addEventListener('click', () => mostrar(actual - 1));
+    galeria.querySelector('.sig').addEventListener('click', () => mostrar(actual + 1));
+    galeria.querySelector('.principal').addEventListener('click', () => { visor.showModal(); mostrar(actual); });
+    visor.querySelector('.ant').addEventListener('click', () => mostrar(actual - 1));
+    visor.querySelector('.sig').addEventListener('click', () => mostrar(actual + 1));
+    visor.querySelector('.cerrar').addEventListener('click', () => visor.close());
+    visor.addEventListener('click', (e) => { if (e.target === visor) visor.close(); });
+    visor.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') mostrar(actual - 1);
+      if (e.key === 'ArrowRight') mostrar(actual + 1);
+    });
+    let inicioX = null;
+    [galeria.querySelector('.marco'), visor].forEach((zona) => {
+      zona.addEventListener('touchstart', (e) => { inicioX = e.touches[0].clientX; }, { passive: true });
+      zona.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - inicioX;
+        if (inicioX !== null && Math.abs(dx) > 40) mostrar(actual + (dx < 0 ? 1 : -1));
+        inicioX = null;
+      });
+    });
+  });
 
   // Todos los contactos van a WhatsApp; cada enlace llega con su mensaje ya escrito (data-wa)
   const WHATSAPP = '34722873925';
