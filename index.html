@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coches Müller · Coches de Alemania y España, revisados y con garantía</title>
-<meta name="description" content="Buscamos, revisamos y traemos coches de ocasión desde Alemania y España. Coche a la carta: tú eliges, nosotros nos ocupamos de todo.">
+<title>Coches Müller · Coches de Alemania revisados y listos para conducir · Pontevedra</title>
+<meta name="description" content="Elegidos como si fueran nuestros. Seleccionamos coches modernos en Alemania, los revisamos en persona y te los entregamos listos para conducir, con 12 meses de garantía. O Morrazo, Pontevedra.">
 <!-- Vista previa al compartir el enlace (WhatsApp, redes...) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Coches Müller">
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://cochesmuller.com/">
 <meta property="og:title" content="Coches Müller">
-<meta property="og:description" content="Coches de Alemania y España, revisados y con garantía. Coche a la carta.">
+<meta property="og:description" content="Elegidos como si fueran nuestros. Coches de Alemania, revisados en persona y listos para conducir.">
 <meta property="og:image" content="https://cochesmuller.com/og.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -90,16 +90,20 @@
 
   /* ---------- Portada ---------- */
   /* El texto va centrado en la parte alta (niebla y farolas) para que el coche quede despejado debajo */
-  .portada { position: relative; min-height: 100svh; display: grid; align-items: start; padding: calc(var(--cab) + clamp(56px, 11vh, 130px)) 0 clamp(48px, 9vh, 96px); isolation: isolate; overflow: hidden; }
+  .portada { position: relative; min-height: 100svh; display: grid; align-items: start; padding: calc(var(--cab) + clamp(40px, 8vh, 110px)) 0 clamp(48px, 9vh, 96px); isolation: isolate; overflow: hidden; }
   .portada picture, .portada .velo { position: absolute; inset: 0; z-index: -1; }
   .portada img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 32%; animation: acercar 14s ease-out both; }
   @keyframes acercar { from { transform: scale(1.08); } to { transform: scale(1); } }
   .portada .velo { background: linear-gradient(180deg, rgb(15 26 44 / .6) 0%, rgb(15 26 44 / .25) 45%, rgb(15 26 44 / .35) 75%, rgb(15 26 44 / .95) 100%); }
-  .portada .texto { text-align: center; margin-inline: auto; max-width: 1100px; }
-  .portada h1 { font-size: clamp(38px, 5.8vw, 86px); text-shadow: 0 2px 30px rgb(0 0 0 / .45); }
-  .portada h1 em { color: var(--naranja); font-style: inherit; }
-  .portada p { margin: 22px auto 0; max-width: 620px; font-size: clamp(16px, 1.6vw, 19px); color: rgb(255 255 255 / .9); text-shadow: 0 1px 12px rgb(0 0 0 / .5); }
-  .portada .acciones { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  /* Portada: logo + nombre como en el logo original, eslogan y frase de apoyo */
+  .portada .texto { text-align: center; margin-inline: auto; max-width: 1100px; display: grid; justify-items: center; }
+  .logo-portada { width: clamp(130px, 13vw, 200px); height: auto; filter: drop-shadow(0 6px 24px rgb(0 0 0 / .45)); }
+  .portada h1 { margin-top: clamp(14px, 2vw, 22px); font-size: clamp(44px, 7vw, 104px); letter-spacing: .03em; text-shadow: 0 2px 30px rgb(0 0 0 / .45); }
+  .portada h1 .apellido { color: var(--naranja); }
+  .lema { margin-top: clamp(10px, 1.4vw, 16px); font-weight: 600; font-style: italic; font-size: clamp(21px, 2.4vw, 32px); letter-spacing: .01em; text-shadow: 0 2px 18px rgb(0 0 0 / .55); }
+  .portada .apoyo { margin: 16px auto 0; max-width: 600px; font-size: clamp(16px, 1.5vw, 18px); color: rgb(255 255 255 / .88); text-shadow: 0 1px 12px rgb(0 0 0 / .5); }
+  .portada .acciones { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .zona { margin-top: 22px; font-size: 13px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: rgb(255 255 255 / .85); text-shadow: 0 1px 10px rgb(0 0 0 / .9), 0 0 2px rgb(0 0 0 / .8); }
   .bajar { position: absolute; left: 50%; bottom: 22px; translate: -50% 0; width: 26px; height: 42px; border: 1.5px solid rgb(255 255 255 / .6); border-radius: 14px; }
   .bajar::after { content: ''; position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--naranja); animation: rueda 1.8s infinite; }
   @keyframes rueda { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
@@ -107,7 +111,7 @@
   /* ---------- Presentación ---------- */
   .intro { padding: clamp(80px, 11vw, 150px) 0 clamp(56px, 7vw, 90px); }
   .intro .envoltura { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
-  .intro h2 { font-size: clamp(34px, 4.4vw, 62px); }
+  .intro h2 { font-size: clamp(34px, 4.4vw, 62px); margin-top: 12px; }
   .intro h2 em { color: var(--naranja); font-style: inherit; }
   .intro .lado p + p { margin-top: 16px; }
   .intro .lado p { color: rgb(255 255 255 / .82); }
@@ -115,7 +119,10 @@
   .firma .puntos i { width: 12px; height: 12px; }
 
   /* ---------- Servicios (tarjetas con foto) ---------- */
-  .servicios { padding-bottom: clamp(80px, 10vw, 140px); }
+  .servicios { padding: clamp(72px, 9vw, 120px) 0 clamp(80px, 10vw, 140px); }
+  .servicios .cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: clamp(32px, 4vw, 52px); }
+  .servicios h2 { font-size: clamp(34px, 4.4vw, 60px); margin-top: 12px; }
+  .servicios .cabeza p { max-width: 430px; color: rgb(255 255 255 / .75); }
   .tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
   .tarjeta { position: relative; min-height: 560px; display: flex; flex-direction: column; justify-content: flex-end; padding: 36px; overflow: hidden; isolation: isolate; text-decoration: none; }
   .tarjeta img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
@@ -154,7 +161,7 @@
   .cinta span { font-weight: 800; font-style: italic; font-size: 20px; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; padding-right: 48px; }
   @keyframes desliza { to { transform: translateX(-50%); } }
 
-  /* ---------- Coche a la carta (formulario) ---------- */
+  /* ---------- Contacto (formulario) ---------- */
   .carta { position: relative; isolation: isolate; padding: clamp(80px, 10vw, 140px) 0; }
   .carta > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; opacity: .28; }
   .carta::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--navy) 0%, rgb(15 26 44 / .82) 40%, var(--navy) 100%); }
@@ -261,7 +268,7 @@
       <svg viewBox="0 0 1640 760" aria-hidden="true"><use href="#logo"/></svg>
       <span>COCHES MÜLLER</span>
     </a>
-    <a class="cta-cabecera" href="#carta"><span class="puntos" aria-hidden="true"><i></i><i></i></span>Coche a la carta</a>
+    <a class="cta-cabecera" href="#contacto"><span class="puntos" aria-hidden="true"><i></i><i></i></span>Contacto</a>
   </div>
 </header>
 
@@ -269,10 +276,10 @@
   <div class="envoltura">
     <ul>
       <li><a class="titular" href="#inicio"><small>01</small>Inicio</a></li>
-      <li><a class="titular" href="#servicios"><small>02</small>Qué hacemos</a></li>
-      <li><a class="titular" href="#como"><small>03</small>Cómo trabajamos</a></li>
-      <li><a class="titular" href="#alemania"><small>04</small>Por qué Alemania</a></li>
-      <li><a class="titular" href="#carta"><small>05</small>Coche a la carta</a></li>
+      <li><a class="titular" href="#servicios"><small>02</small>Servicios</a></li>
+      <li><a class="titular" href="#compromiso"><small>03</small>Nuestro compromiso</a></li>
+      <li><a class="titular" href="#como"><small>04</small>Cómo trabajamos</a></li>
+      <li><a class="titular" href="#contacto"><small>05</small>Contacto</a></li>
     </ul>
     <p class="contacto-menu">Escríbenos: <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></p>
   </div>
@@ -286,48 +293,61 @@
     <div class="velo" aria-hidden="true"></div>
     <div class="envoltura">
       <div class="texto">
-        <h1 class="titular">Tu próximo coche,<br><em>traído de Alemania.</em></h1>
-        <p>Buscamos, revisamos y traemos coches de ocasión de Alemania y de España. Tú eliges el coche; nosotros nos ocupamos de todo lo demás.</p>
+        <svg class="logo-portada" viewBox="0 0 1640 760" aria-hidden="true"><use href="#logo"/></svg>
+        <h1 class="titular" aria-label="Coches Müller">COCHES <span class="apellido">M<span class="u">U</span>LLER</span></h1>
+        <p class="lema">Elegidos como si fueran nuestros.</p>
+        <p class="apoyo">Coches modernos seleccionados en Alemania, revisados en persona y listos para conducir.</p>
         <div class="acciones">
-          <a class="boton boton-lleno" href="#carta">Coche a la carta</a>
-          <a class="boton boton-borde" href="#como">Cómo trabajamos</a>
+          <a class="boton boton-lleno" href="#contacto">Escríbenos</a>
+          <a class="boton boton-borde" href="#servicios">Qué hacemos</a>
         </div>
+        <p class="zona">O Morrazo · Pontevedra</p>
       </div>
     </div>
-    <a class="bajar" href="#nosotros" aria-label="Bajar"></a>
+    <a class="bajar" href="#servicios" aria-label="Bajar"></a>
   </section>
 
-  <section class="intro" id="nosotros">
+  <section class="servicios" id="servicios">
+    <div class="envoltura cabeza rev">
+      <div>
+        <p class="antetitulo">Nuestros servicios</p>
+        <h2 class="titular">De Alemania a tu puerta.</h2>
+      </div>
+      <p>Nos encargamos de todo el proceso para que tú solo tengas que elegir y conducir.</p>
+    </div>
+    <div class="tarjetas">
+      <a class="tarjeta rev" href="#como">
+        <img src="img/coche-a-la-carta.webp" width="900" height="1125" loading="lazy" alt="Mano sujetando la llave de un coche junto a un coche plateado">
+        <h3 class="titular">Seleccionados en Alemania</h3>
+        <p>Buscamos coches modernos y fiables de particulares y concesionarios alemanes. Solo los que compraríamos para nosotros.</p>
+        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
+      </a>
+      <a class="tarjeta rev" href="#compromiso">
+        <img src="img/revision.webp" width="900" height="600" loading="lazy" alt="Mecánico revisando el motor de un coche con el capó abierto">
+        <h3 class="titular">Revisados en persona</h3>
+        <p>Vamos a ver cada coche antes de comprarlo y lo revisamos a fondo: mecánica, mantenimiento y kilómetros.</p>
+        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
+      </a>
+      <a class="tarjeta rev" href="#contacto">
+        <img src="img/importacion.webp" width="900" height="692" loading="lazy" alt="Camión portacoches cargado de coches en una autopista">
+        <h3 class="titular">Listos para conducir</h3>
+        <p>Lo traemos a España y nos ocupamos de impuestos, ITV y matriculación. Te lo entregamos con 12 meses de garantía.</p>
+        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="intro" id="compromiso">
     <div class="envoltura">
-      <h2 class="titular rev">Más coche por tu dinero.<br><em>Sin papeleos ni sorpresas.</em></h2>
+      <div class="rev">
+        <p class="antetitulo">Nuestro compromiso</p>
+        <h2 class="titular">Si no lo compraríamos,<br><em>no lo vendemos.</em></h2>
+      </div>
       <div class="lado rev">
-        <p>En Coches Müller buscamos coches de ocasión en Alemania y en España, los comparamos con lo que cuestan aquí y solo te proponemos los que de verdad compensan.</p>
-        <p>Del resto nos encargamos nosotros: la revisión, el transporte, los impuestos, la ITV y la matriculación. Tú solo tienes que venir a por las llaves.</p>
+        <p>Cada coche lo compramos como si fuera para nosotros. Pensamos a largo plazo: buscamos motores con fama de fiables, mantenimiento al día y kilómetros comprobables, y descartamos cualquier coche que pueda darte problemas en un par de años.</p>
+        <p>Preferimos tener menos coches y que todos sean buenos. Queremos que conduzcas tranquilo y que, cuando te pregunten, nos recomiendes.</p>
         <p class="firma"><span class="puntos" aria-hidden="true"><i></i><i></i></span><span aria-label="Coches Müller">COCHES M<span class="u">U</span>LLER</span></p>
       </div>
-    </div>
-  </section>
-
-  <section class="servicios" id="servicios" aria-label="Qué hacemos">
-    <div class="tarjetas">
-      <a class="tarjeta rev" href="#carta">
-        <img src="img/coche-a-la-carta.webp" width="900" height="1125" loading="lazy" alt="Mano sujetando la llave de un coche junto a un coche plateado">
-        <h3 class="titular">Coche a la carta</h3>
-        <p>Dinos qué coche buscas y cuánto quieres gastar. Lo encontramos, lo revisamos y te lo dejamos listo para conducir.</p>
-        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
-      </a>
-      <a class="tarjeta rev" href="#alemania">
-        <img src="img/importacion.webp" width="900" height="692" loading="lazy" alt="Camión portacoches cargado de coches nuevos en una autopista">
-        <h3 class="titular">Importación desde Alemania</h3>
-        <p>El mayor mercado de coches de ocasión de Europa. Nos ocupamos del transporte, los impuestos y la homologación.</p>
-        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
-      </a>
-      <a class="tarjeta rev" href="#como">
-        <img src="img/revision.webp" width="900" height="600" loading="lazy" alt="Mecánico revisando el motor de un coche con el capó abierto">
-        <h3 class="titular">Revisado y con garantía</h3>
-        <p>Cada coche pasa una revisión antes de la entrega y sale con al menos 12 meses de garantía.</p>
-        <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span>
-      </a>
     </div>
   </section>
 
@@ -338,13 +358,13 @@
           <p class="antetitulo">Paso a paso</p>
           <h2 class="titular">Cómo trabajamos</h2>
         </div>
-        <p>Un proceso claro, sin letra pequeña: sabes en todo momento en qué punto está tu coche y cuánto te va a costar.</p>
+        <p>Un proceso claro y sin letra pequeña, para que sepas exactamente qué coche te llevas.</p>
       </div>
       <ol class="lista-pasos">
-        <li class="rev"><h3>Nos cuentas qué buscas</h3><p>Marca, modelo, año, kilómetros y presupuesto. Si no lo tienes claro, te asesoramos.</p></li>
-        <li class="rev"><h3>Lo buscamos y comparamos</h3><p>Rastreamos anuncios en Alemania y en España y te enseñamos cuánto cuesta cada opción puesta aquí.</p></li>
-        <li class="rev"><h3>Revisión, transporte y papeles</h3><p>Revisamos el coche, lo traemos y nos ocupamos de impuestos, ITV y matriculación.</p></li>
-        <li class="rev"><h3>Te lo entregamos</h3><p>Listo para conducir, con sus papeles en regla y su garantía.</p></li>
+        <li class="rev"><h3>Lo encontramos en Alemania</h3><p>Seleccionamos coches modernos y fiables, de particulares y de concesionarios.</p></li>
+        <li class="rev"><h3>Vamos a verlo</h3><p>Lo revisamos en persona antes de comprarlo. Si algo no nos convence, no lo compramos.</p></li>
+        <li class="rev"><h3>Lo traemos a España</h3><p>Transporte, impuestos, ITV y matriculación: nos ocupamos de todo el papeleo.</p></li>
+        <li class="rev"><h3>Listo para conducir</h3><p>Te lo entregamos con los papeles en regla y 12 meses de garantía.</p></li>
       </ol>
     </div>
   </section>
@@ -359,27 +379,27 @@
           <li><span><strong>Más donde elegir.</strong> Es el mercado de coches de ocasión más grande de Europa.</span></li>
           <li><span><strong>Historial a la vista.</strong> Muchos coches llevan su libro de mantenimiento al día y kilómetros comprobables.</span></li>
           <li><span><strong>Mejor equipados.</strong> Por el mismo dinero suelen traer más extras que aquí.</span></li>
-          <li><span><strong>Números claros.</strong> Antes de proponerte un coche, lo comparamos con lo que vale en España.</span></li>
+          <li><span><strong>Nada a ciegas.</strong> Vamos a ver cada coche en persona antes de comprarlo.</span></li>
         </ul>
-        <a class="boton boton-lleno" href="#carta">Pide tu coche</a>
+        <a class="boton boton-lleno" href="#contacto">Escríbenos</a>
       </div>
     </div>
   </section>
 
   <div class="franja" aria-hidden="true">
     <div class="cinta">
-      <span>Te lo buscamos · Te lo revisamos · Te lo traemos ·</span><span>Te lo buscamos · Te lo revisamos · Te lo traemos ·</span>
-      <span>Te lo buscamos · Te lo revisamos · Te lo traemos ·</span><span>Te lo buscamos · Te lo revisamos · Te lo traemos ·</span>
+      <span>Seleccionados en Alemania · Revisados en persona · Listos para conducir ·</span><span>Seleccionados en Alemania · Revisados en persona · Listos para conducir ·</span>
+      <span>Seleccionados en Alemania · Revisados en persona · Listos para conducir ·</span><span>Seleccionados en Alemania · Revisados en persona · Listos para conducir ·</span>
     </div>
   </div>
 
-  <section class="carta" id="carta">
+  <section class="carta" id="contacto">
     <img src="img/contacto.webp" width="1600" height="1067" loading="lazy" alt="">
     <div class="envoltura">
       <div class="rev">
-        <p class="antetitulo">Coche a la carta</p>
-        <h2 class="titular">Cuéntanos qué coche buscas.</h2>
-        <p class="explica">Rellena lo que sepas y te contestamos con opciones reales de Alemania y de España, con su precio puesto aquí.</p>
+        <p class="antetitulo">Contacto</p>
+        <h2 class="titular">¿Te interesa un coche?</h2>
+        <p class="explica">Cuéntanos qué buscas y te respondemos con opciones reales. Atendemos en O Morrazo y en toda la provincia de Pontevedra.</p>
         <div class="directo">
           <span>O escríbenos directamente</span>
           <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a>
@@ -388,14 +408,11 @@
       <form class="rev" id="formulario" novalidate>
         <label>Nombre<input name="nombre" autocomplete="name" required></label>
         <label>Teléfono o email<input name="contacto" autocomplete="email" required></label>
-        <label class="ancho">Coche que buscas<input name="coche" placeholder="Ej.: Audi A3 Sportback, automático" required></label>
-        <label>Presupuesto máximo (€)<input name="presupuesto" inputmode="numeric" placeholder="Ej.: 20.000"></label>
-        <label>Año desde<input name="anio" inputmode="numeric" placeholder="Ej.: 2019"></label>
-        <label>Kilómetros máximos<input name="km" inputmode="numeric" placeholder="Ej.: 100.000"></label>
-        <label>Combustible / cambio<input name="extras" placeholder="Ej.: diésel, automático"></label>
-        <label class="ancho">Algo más que debamos saber<textarea name="comentarios" placeholder="Color, equipamiento, para cuándo lo necesitas…"></textarea></label>
-        <button class="boton boton-lleno" type="submit">Enviar solicitud</button>
-        <p class="nota" id="nota" aria-live="polite">Se abrirá tu correo con la solicitud lista para enviar.</p>
+        <label class="ancho">¿Qué coche te interesa o buscas?<input name="coche" placeholder="Ej.: Audi A3 Sportback automático" required></label>
+        <label class="ancho">Presupuesto aproximado (€)<input name="presupuesto" inputmode="numeric" placeholder="Ej.: 20.000"></label>
+        <label class="ancho">Algo más que debamos saber<textarea name="comentarios" placeholder="Año, kilómetros, color, para cuándo lo necesitas…"></textarea></label>
+        <button class="boton boton-lleno" type="submit">Enviar</button>
+        <p class="nota" id="nota" aria-live="polite">Se abrirá tu correo con el mensaje listo para enviar.</p>
       </form>
     </div>
   </section>
@@ -406,21 +423,22 @@
     <div class="pie">
       <div>
         <a class="marca" href="#inicio" aria-label="Coches Müller, inicio"><svg viewBox="0 0 1640 760" aria-hidden="true"><use href="#logo"/></svg><span>COCHES MÜLLER</span></a>
-        <p>Coches de ocasión de Alemania y España, revisados y con garantía.</p>
+        <p><strong>Elegidos como si fueran nuestros.</strong><br>Coches seleccionados en Alemania, revisados en persona y listos para conducir.</p>
       </div>
       <div>
         <h3>Explora</h3>
         <ul>
-          <li><a href="#servicios">Qué hacemos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#compromiso">Nuestro compromiso</a></li>
           <li><a href="#como">Cómo trabajamos</a></li>
           <li><a href="#alemania">Por qué Alemania</a></li>
-          <li><a href="#carta">Coche a la carta</a></li>
         </ul>
       </div>
       <div>
         <h3>Contacto</h3>
         <ul>
           <li><a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></li>
+          <li>O Morrazo · Pontevedra</li>
         </ul>
       </div>
     </div>
@@ -431,7 +449,7 @@
   </div>
 </footer>
 
-<a class="flotante" href="#carta" aria-label="Pide tu coche a la carta">
+<a class="flotante" href="#contacto" aria-label="Escríbenos">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
 </a>
 
@@ -460,7 +478,7 @@
   // El botón flotante sobra cuando ya estás en el formulario
   const flotante = document.querySelector('.flotante');
   new IntersectionObserver(([e]) => flotante.classList.toggle('oculto', e.isIntersecting), { threshold: 0.2 })
-    .observe(document.getElementById('carta'));
+    .observe(document.getElementById('contacto'));
 
   // Web estática: la solicitud se manda abriendo el correo del visitante con todo rellenado
   const form = document.getElementById('formulario');
@@ -475,10 +493,9 @@
       return;
     }
     const lineas = [
-      ['Nombre', d.nombre], ['Contacto', d.contacto], ['Coche', d.coche], ['Presupuesto máximo', d.presupuesto],
-      ['Año desde', d.anio], ['Kilómetros máximos', d.km], ['Combustible / cambio', d.extras], ['Comentarios', d.comentarios],
-    ].filter(([, v]) => String(v).trim()).map(([k, v]) => `${k}: ${String(v).trim()}`);
-    location.href = `mailto:info@cochesmuller.com?subject=${encodeURIComponent('Coche a la carta: ' + d.coche.trim())}&body=${encodeURIComponent(lineas.join('\n'))}`;
+      ['Nombre', d.nombre], ['Contacto', d.contacto], ['Coche', d.coche], ['Presupuesto', d.presupuesto], ['Comentarios', d.comentarios],
+    ].filter(([, v]) => String(v ?? '').trim()).map(([k, v]) => `${k}: ${String(v).trim()}`);
+    location.href = `mailto:info@cochesmuller.com?subject=${encodeURIComponent('Consulta web: ' + d.coche.trim())}&body=${encodeURIComponent(lineas.join('\n'))}`;
     nota.textContent = 'Listo: revisa el correo que se ha abierto y pulsa enviar.';
   });
 </script>
