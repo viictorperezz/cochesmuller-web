@@ -209,6 +209,28 @@
   form .boton { justify-self: start; border: 0; cursor: pointer; font-family: inherit; }
   .nota { font-size: 14px; color: rgb(255 255 255 / .55); align-self: center; }
 
+  /* ---------- Redes sociales ---------- */
+  .redes-portada { margin-top: 18px; display: flex; gap: 12px; justify-content: center; }
+  .redes-portada a { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; border: 1.5px dashed rgb(255 255 255 / .65); background: rgb(15 26 44 / .35); backdrop-filter: blur(4px); transition: background .2s, border-color .2s, color .2s, transform .2s; }
+  .redes-portada a:hover { background: var(--naranja); border-color: var(--naranja); color: var(--navy); transform: translateY(-2px); }
+  .redes-portada svg { width: 21px; height: 21px; }
+  .redes { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .red { display: inline-flex; align-items: center; gap: 14px; padding: 10px 22px 10px 10px; border-radius: 18px; background: var(--navy-2); border: 1px solid rgb(255 255 255 / .1); text-decoration: none; transition: border-color .2s, transform .2s; }
+  .red:hover { border-color: var(--naranja); transform: translateY(-2px); }
+  .red .icono { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; color: var(--blanco); }
+  .red .icono svg { width: 24px; height: 24px; }
+  .icono-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+  .icono-tt { background: #000; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .12); }
+  .icono-tt svg { filter: drop-shadow(-1.5px -1px 0 #25f4ee) drop-shadow(1.5px 1px 0 #fe2c55); }
+  .red strong { display: block; font-size: 16px; line-height: 1.2; }
+  .red small { font-size: 14px; color: rgb(255 255 255 / .6); }
+  .redes-menu { margin-top: 14px; display: flex; gap: 22px; }
+  .redes-menu a { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; color: rgb(255 255 255 / .8); }
+  .redes-menu svg, .redes-pie svg { width: 20px; height: 20px; }
+  .redes-pie { display: flex; gap: 10px; margin-top: 6px; }
+  .redes-pie a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgb(255 255 255 / .18); }
+  .redes-pie a:hover { border-color: var(--naranja); color: var(--naranja); }
+
   /* ---------- Pie ---------- */
   footer { background: var(--navy-3); padding: 64px 0 28px; }
   .pie { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
@@ -285,6 +307,8 @@
       <polygon fill="#fff" stroke="#fff" stroke-width="14" stroke-linejoin="round" points="962,640 1266,640 1300,905 1448,640 1752,640 1628,1282 1414,1282 1462,975 1290,1282 1152,1282 1120,972 1040,1282 828,1282"/>
     </symbol>
     <symbol id="flecha" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="tt" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
   </defs>
 </svg>
 
@@ -313,6 +337,10 @@
       <li><a class="titular" href="#contacto"><small>06</small>Contacto</a></li>
     </ul>
     <p class="contacto-menu">Escríbenos: <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></p>
+    <p class="redes-menu">
+      <a href="https://www.instagram.com/cochesmuller/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ig"/></svg>Instagram</a>
+      <a href="https://www.tiktok.com/@cochesmuller" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#tt"/></svg>TikTok</a>
+    </p>
   </div>
 </nav>
 
@@ -333,6 +361,10 @@
           <a class="boton boton-borde" href="#servicios">Nuestros servicios</a>
         </div>
         <p class="zona">O Morrazo · Pontevedra</p>
+        <div class="redes-portada">
+          <a href="https://www.instagram.com/cochesmuller/" target="_blank" rel="noopener" aria-label="Instagram de Coches Müller (@cochesmuller)"><svg aria-hidden="true"><use href="#ig"/></svg></a>
+          <a href="https://www.tiktok.com/@cochesmuller" target="_blank" rel="noopener" aria-label="TikTok de Coches Müller (@cochesmuller)"><svg aria-hidden="true"><use href="#tt"/></svg></a>
+        </div>
       </div>
     </div>
     <a class="bajar" href="#servicios" aria-label="Bajar"></a>
@@ -480,6 +512,16 @@
           <span>O escríbenos directamente</span>
           <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a>
         </div>
+        <div class="redes">
+          <a class="red" href="https://www.instagram.com/cochesmuller/" target="_blank" rel="noopener">
+            <span class="icono icono-ig"><svg aria-hidden="true"><use href="#ig"/></svg></span>
+            <span><strong>Instagram</strong><small>@cochesmuller</small></span>
+          </a>
+          <a class="red" href="https://www.tiktok.com/@cochesmuller" target="_blank" rel="noopener">
+            <span class="icono icono-tt"><svg aria-hidden="true"><use href="#tt"/></svg></span>
+            <span><strong>TikTok</strong><small>@cochesmuller</small></span>
+          </a>
+        </div>
       </div>
       <form class="rev" id="formulario" novalidate>
         <label class="ancho">¿Qué te interesa?
@@ -524,6 +566,10 @@
         <ul>
           <li><a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></li>
           <li>O Morrazo · Pontevedra</li>
+          <li class="redes-pie">
+            <a href="https://www.instagram.com/cochesmuller/" target="_blank" rel="noopener" aria-label="Instagram de Coches Müller"><svg aria-hidden="true"><use href="#ig"/></svg></a>
+            <a href="https://www.tiktok.com/@cochesmuller" target="_blank" rel="noopener" aria-label="TikTok de Coches Müller"><svg aria-hidden="true"><use href="#tt"/></svg></a>
+          </li>
         </ul>
       </div>
     </div>
