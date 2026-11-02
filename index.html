@@ -209,6 +209,15 @@
   form .boton { justify-self: start; border: 0; cursor: pointer; font-family: inherit; }
   .nota { font-size: 14px; color: rgb(255 255 255 / .55); align-self: center; }
 
+  /* ---------- WhatsApp ---------- */
+  .icono-wa { width: 18px; height: 18px; flex: none; }
+  .cta-cabecera .icono-wa { width: 20px; height: 20px; color: #25d366; }
+  .boton-wa { margin-top: 30px; display: inline-flex; align-items: center; gap: 16px; padding: 14px 26px 14px 16px; border-radius: 18px; background: #25d366; color: #06301a; text-decoration: none; box-shadow: 0 14px 34px -14px rgb(37 211 102 / .7); transition: transform .2s, background .2s; }
+  .boton-wa:hover { background: #2ee374; transform: translateY(-2px); }
+  .boton-wa svg { width: 40px; height: 40px; }
+  .boton-wa small { display: block; font-size: 14px; font-weight: 500; }
+  .boton-wa strong { display: block; font-size: 26px; font-weight: 800; font-style: italic; letter-spacing: .02em; line-height: 1.1; }
+
   /* ---------- Redes sociales ---------- */
   .redes-portada { margin-top: 18px; display: flex; gap: 12px; justify-content: center; }
   .redes-portada a { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; border: 1.5px dashed rgb(255 255 255 / .65); background: rgb(15 26 44 / .35); backdrop-filter: blur(4px); transition: background .2s, border-color .2s, color .2s, transform .2s; }
@@ -244,9 +253,9 @@
   .legal { margin-top: 48px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / .08); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px; color: rgb(255 255 255 / .45); }
 
   /* Botón flotante (sobre todo para el móvil) */
-  .flotante { position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--naranja); color: var(--navy); display: grid; place-items: center; box-shadow: 0 10px 30px -8px rgb(255 107 44 / .6); transition: transform .2s, opacity .3s; }
+  .flotante { position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: #25d366; color: var(--blanco); display: grid; place-items: center; box-shadow: 0 10px 30px -8px rgb(37 211 102 / .7); transition: transform .2s, opacity .3s; }
   .flotante:hover { transform: scale(1.06); }
-  .flotante svg { width: 24px; height: 24px; }
+  .flotante svg { width: 30px; height: 30px; }
   .flotante.oculto { opacity: 0; pointer-events: none; }
 
   /* Aparición al hacer scroll */
@@ -307,6 +316,7 @@
       <polygon fill="#fff" stroke="#fff" stroke-width="14" stroke-linejoin="round" points="962,640 1266,640 1300,905 1448,640 1752,640 1628,1282 1414,1282 1462,975 1290,1282 1152,1282 1120,972 1040,1282 828,1282"/>
     </symbol>
     <symbol id="flecha" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
     <symbol id="ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></symbol>
     <symbol id="tt" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
   </defs>
@@ -322,7 +332,7 @@
       <svg viewBox="0 0 1640 760" aria-hidden="true"><use href="#logo"/></svg>
       <span>COCHES MÜLLER</span>
     </a>
-    <a class="cta-cabecera" href="#contacto"><span class="puntos" aria-hidden="true"><i></i><i></i></span>Contacto</a>
+    <a class="cta-cabecera" href="https://wa.me/34722873925" data-wa="Hola, os escribo desde la web de Coches Müller." target="_blank" rel="noopener"><svg class="icono-wa" aria-hidden="true"><use href="#wa"/></svg>722 87 39 25</a>
   </div>
 </header>
 
@@ -336,7 +346,7 @@
       <li><a class="titular" href="#como"><small>05</small>Cómo trabajamos</a></li>
       <li><a class="titular" href="#contacto"><small>06</small>Contacto</a></li>
     </ul>
-    <p class="contacto-menu">Escríbenos: <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></p>
+    <p class="contacto-menu">WhatsApp: <a href="https://wa.me/34722873925" data-wa="Hola, os escribo desde la web de Coches Müller." target="_blank" rel="noopener">722 87 39 25</a> · <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></p>
     <p class="redes-menu">
       <a href="https://www.instagram.com/cochesmuller/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ig"/></svg>Instagram</a>
       <a href="https://www.tiktok.com/@cochesmuller" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#tt"/></svg>TikTok</a>
@@ -362,6 +372,7 @@
         </div>
         <p class="zona">O Morrazo · Pontevedra</p>
         <div class="redes-portada">
+          <a href="https://wa.me/34722873925" data-wa="Hola, os escribo desde la web de Coches Müller." target="_blank" rel="noopener" aria-label="WhatsApp de Coches Müller (722 87 39 25)"><svg aria-hidden="true"><use href="#wa"/></svg></a>
           <a href="https://www.instagram.com/cochesmuller/" target="_blank" rel="noopener" aria-label="Instagram de Coches Müller (@cochesmuller)"><svg aria-hidden="true"><use href="#ig"/></svg></a>
           <a href="https://www.tiktok.com/@cochesmuller" target="_blank" rel="noopener" aria-label="TikTok de Coches Müller (@cochesmuller)"><svg aria-hidden="true"><use href="#tt"/></svg></a>
         </div>
@@ -379,21 +390,21 @@
       <p>Llévate uno de nuestros coches, encárganos el que buscas o déjate asesorar para importarlo tú.</p>
     </div>
     <div class="tarjetas">
-      <a class="tarjeta rev" href="#contacto" data-servicio="compraventa">
+      <a class="tarjeta rev" href="https://wa.me/34722873925" data-wa="Hola, me interesa comprar uno de vuestros coches." target="_blank" rel="noopener">
         <img src="img/coche-a-la-carta.webp" width="900" height="1125" loading="lazy" alt="Mano sujetando la llave de un coche junto a un coche plateado">
         <span class="num" aria-hidden="true">01</span>
         <h3 class="titular">Compraventa de coches importados</h3>
         <p>Coches modernos y fiables traídos de Alemania, revisados en persona y listos para conducir, con 12 meses de garantía.</p>
         <span class="mas">Me interesa <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span></span>
       </a>
-      <a class="tarjeta rev" href="#contacto" data-servicio="importacion">
+      <a class="tarjeta rev" href="https://wa.me/34722873925" data-wa="Hola, quiero encargar un coche con la importación a la carta." target="_blank" rel="noopener">
         <img src="img/importacion.webp" width="900" height="692" loading="lazy" alt="Camión portacoches cargado de coches en una autopista">
         <span class="num" aria-hidden="true">02</span>
         <h3 class="titular">Importación a la carta</h3>
         <p>¿Buscas un coche concreto? Lo encontramos en Alemania, lo revisamos, lo traemos y lo matriculamos por ti. Tú solo eliges.</p>
         <span class="mas">Encargar mi coche <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span></span>
       </a>
-      <a class="tarjeta rev" href="#contacto" data-servicio="consultoria">
+      <a class="tarjeta rev" href="https://wa.me/34722873925" data-wa="Hola, me gustaría pedir asesoramiento para comprar o importar un coche." target="_blank" rel="noopener">
         <img src="img/revision.webp" width="900" height="600" loading="lazy" alt="Mecánico revisando el motor de un coche con el capó abierto">
         <span class="num" aria-hidden="true">03</span>
         <h3 class="titular">Consultoría de coches e importación</h3>
@@ -437,7 +448,7 @@
             <li>Paquete deportivo y paragolpes RS3</li>
           </ul>
           <div class="acciones">
-            <a class="boton boton-lleno" href="#contacto" data-servicio="compraventa" data-coche="Audi A3 Cabrio 2011 (10.990 €)">Me interesa</a>
+            <a class="boton boton-lleno" href="https://wa.me/34722873925" data-wa="Hola, me interesa el Audi A3 Cabrio de 2011 (10.990 €) que tenéis en la web." target="_blank" rel="noopener"><svg class="icono-wa" aria-hidden="true"><use href="#wa"/></svg>Me interesa</a>
             <a class="boton boton-oscuro" href="https://es.wallapop.com/item/audi-a3-descapotable-full-extras-1319574176" target="_blank" rel="noopener">Ver fotos en Wallapop</a>
           </div>
         </div>
@@ -508,8 +519,12 @@
         <p class="antetitulo">Contacto</p>
         <h2 class="titular">Hablemos de tu coche.</h2>
         <p class="explica">Cuéntanos qué necesitas: uno de nuestros coches, uno por encargo o que te asesoremos. Atendemos en O Morrazo y en toda la provincia de Pontevedra.</p>
+        <a class="boton-wa" href="https://wa.me/34722873925" data-wa="Hola, os escribo desde la web de Coches Müller." target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#wa"/></svg>
+          <span><small>Escríbenos por WhatsApp, cuando quieras</small><strong>722 87 39 25</strong></span>
+        </a>
         <div class="directo">
-          <span>O escríbenos directamente</span>
+          <span>O por correo</span>
           <a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a>
         </div>
         <div class="redes">
@@ -532,13 +547,12 @@
             <option value="otra">Otra consulta</option>
           </select>
         </label>
-        <label>Nombre<input name="nombre" autocomplete="name" required></label>
-        <label>Teléfono o email<input name="contacto" autocomplete="email" required></label>
+        <label class="ancho">Nombre<input name="nombre" autocomplete="name" required></label>
         <label class="ancho">¿Qué coche te interesa o buscas?<input name="coche" placeholder="Ej.: Audi A3 Sportback automático" required></label>
         <label class="ancho">Presupuesto aproximado (€)<input name="presupuesto" inputmode="numeric" placeholder="Ej.: 20.000"></label>
         <label class="ancho">Algo más que debamos saber<textarea name="comentarios" placeholder="Año, kilómetros, color, para cuándo lo necesitas…"></textarea></label>
-        <button class="boton boton-lleno" type="submit">Enviar</button>
-        <p class="nota" id="nota" aria-live="polite">Se abrirá tu correo con el mensaje listo para enviar.</p>
+        <button class="boton boton-lleno" type="submit"><svg class="icono-wa" aria-hidden="true"><use href="#wa"/></svg>Enviar por WhatsApp</button>
+        <p class="nota" id="nota" aria-live="polite">Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
       </form>
     </div>
   </section>
@@ -564,6 +578,7 @@
       <div>
         <h3>Contacto</h3>
         <ul>
+          <li><a href="https://wa.me/34722873925" data-wa="Hola, os escribo desde la web de Coches Müller." target="_blank" rel="noopener">WhatsApp 722 87 39 25</a></li>
           <li><a href="mailto:info@cochesmuller.com">info@cochesmuller.com</a></li>
           <li>O Morrazo · Pontevedra</li>
           <li class="redes-pie">
@@ -580,8 +595,8 @@
   </div>
 </footer>
 
-<a class="flotante" href="#contacto" aria-label="Escríbenos">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4zM4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+<a class="flotante" href="https://wa.me/34722873925" data-wa="Hola, os escribo desde la web de Coches Müller." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg aria-hidden="true"><use href="#wa"/></svg>
 </a>
 
 <script>
@@ -611,30 +626,32 @@
   new IntersectionObserver(([e]) => flotante.classList.toggle('oculto', e.isIntersecting), { threshold: 0.2 })
     .observe(document.getElementById('contacto'));
 
-  // Web estática: la solicitud se manda abriendo el correo del visitante con todo rellenado
+  // Todos los contactos van a WhatsApp; cada enlace llega con su mensaje ya escrito (data-wa)
+  const WHATSAPP = '34722873925';
+  const whatsapp = (texto) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+  document.querySelectorAll('[data-wa]').forEach((a) => { a.href = whatsapp(a.dataset.wa); });
+
+  // Web estática: el formulario prepara el mensaje y abre WhatsApp para enviarlo
   const form = document.getElementById('formulario');
-  // Al pulsar una tarjeta de servicio, el formulario ya llega con ese servicio elegido
-  document.querySelectorAll('[data-servicio]').forEach((t) =>
-    t.addEventListener('click', () => {
-      form.elements.servicio.value = t.dataset.servicio;
-      if (t.dataset.coche) form.elements.coche.value = t.dataset.coche;
-    }));
   const nota = document.getElementById('nota');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(form));
-    const falta = ['nombre', 'contacto', 'coche'].find((k) => !String(d[k]).trim());
+    const falta = ['nombre', 'coche'].find((k) => !String(d[k]).trim());
     if (falta) {
-      nota.textContent = 'Rellena al menos tu nombre, cómo contactarte y el coche que buscas.';
+      nota.textContent = 'Rellena al menos tu nombre y el coche que te interesa.';
       form.elements[falta].focus();
       return;
     }
     const servicio = form.elements.servicio.selectedOptions[0].textContent;
     const lineas = [
-      ['Me interesa', servicio], ['Nombre', d.nombre], ['Contacto', d.contacto], ['Coche', d.coche], ['Presupuesto', d.presupuesto], ['Comentarios', d.comentarios],
+      ['Me interesa', servicio], ['Nombre', d.nombre], ['Coche', d.coche], ['Presupuesto', d.presupuesto], ['Comentarios', d.comentarios],
     ].filter(([, v]) => String(v ?? '').trim()).map(([k, v]) => `${k}: ${String(v).trim()}`);
-    location.href = `mailto:info@cochesmuller.com?subject=${encodeURIComponent(`${servicio}: ${d.coche.trim()}`)}&body=${encodeURIComponent(lineas.join('\n'))}`;
-    nota.textContent = 'Listo: revisa el correo que se ha abierto y pulsa enviar.';
+    const url = whatsapp(['Hola, os escribo desde la web de Coches Müller.', ...lineas].join('\n'));
+    // Con 'noopener' window.open devuelve siempre null: se abre normal y se corta el opener a mano
+    const ventana = window.open(url, '_blank');
+    if (ventana) ventana.opener = null; else location.href = url;
+    nota.textContent = 'Listo: pulsa enviar en WhatsApp.';
   });
 </script>
 </body>
