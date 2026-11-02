@@ -141,9 +141,11 @@
   .stock .cabeza p { max-width: 440px; color: var(--gris); }
   .valoracion { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; font-weight: 600; font-size: 15px; color: var(--navy); }
   .valoracion .estrellas { color: #f5a524; letter-spacing: 2px; font-size: 18px; }
-  .coche { display: grid; grid-template-columns: 1.05fr 1fr; background: var(--blanco); border-radius: 22px; overflow: hidden; box-shadow: 0 1px 0 rgb(15 26 44 / .06), 0 30px 60px -32px rgb(15 26 44 / .45); }
+  .coche { display: grid; grid-template-columns: 1.05fr 1fr; background: var(--blanco); border-radius: 22px; overflow: clip; box-shadow: 0 1px 0 rgb(15 26 44 / .06), 0 30px 60px -32px rgb(15 26 44 / .45); }
   /* Galería: foto grande con flechas y contador, miniaturas debajo; al pulsar se abre el visor */
-  .galeria { background: var(--navy); min-width: 0; }
+  .galeria { background: var(--navy); min-width: 0; align-self: start; }
+  /* En ordenador la galería acompaña al bajar por el equipamiento (overflow: clip en .coche para que sticky funcione) */
+  @media (min-width: 761px) { .galeria { position: sticky; top: calc(var(--cab) + 16px); } }
   .marco { position: relative; }
   .galeria .principal { display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; background: #000; cursor: zoom-in; overflow: hidden; }
   .galeria .principal img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 68%; }
@@ -174,6 +176,19 @@
   .destacados { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; font-size: 15px; color: #2b3547; }
   .destacados li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; }
   .destacados li::before { content: ''; width: 10px; height: 10px; margin-top: 7px; border-radius: 50%; background: var(--naranja); }
+  /* "Ver todo el equipamiento": desplegable nativo (funciona sin JS) */
+  .equipamiento { border-top: 1px solid rgb(15 26 44 / .1); padding-top: 14px; }
+  .equipamiento summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--navy); }
+  .equipamiento summary::-webkit-details-marker { display: none; }
+  .equipamiento summary::after { content: ''; width: 9px; height: 9px; border-right: 2px solid var(--naranja); border-bottom: 2px solid var(--naranja); rotate: 45deg; translate: 0 -3px; transition: rotate .25s, translate .25s; }
+  .equipamiento[open] summary::after { rotate: 225deg; translate: 0 3px; }
+  .equipamiento summary:hover { color: #c2410c; }
+  .equipamiento .cerrar, .equipamiento[open] .abrir { display: none; }
+  .equipamiento[open] .cerrar { display: inline; }
+  .grupos { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px 24px; }
+  .grupos h4 { font-weight: 800; font-style: italic; text-transform: uppercase; font-size: 14px; letter-spacing: .08em; color: var(--naranja); margin-bottom: 6px; }
+  .grupos ul { list-style: none; padding: 0; display: grid; gap: 4px; font-size: 14.5px; color: #2b3547; }
+  .grupos li::before { content: '✓'; color: #16a34a; font-weight: 700; margin-right: 8px; }
   .coche .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
   .boton-oscuro { border: 1.5px dashed rgb(15 26 44 / .45); color: var(--navy); }
   .boton-oscuro:hover { border-color: var(--naranja); color: #c2410c; }
@@ -475,7 +490,7 @@
           </div>
         </div>
         <div class="datos">
-          <h3 class="titular">Audi A3 Cabrio</h3>
+          <h3 class="titular">Audi A3 Cabrio Full Extras</h3>
           <p class="precio">10.990 €</p>
           <ul class="fichas">
             <li>2011</li><li>172.500 km</li><li>Diésel</li><li>Descapotable</li>
@@ -490,8 +505,34 @@
             <li>Asientos de cuero y alcántara calefactables</li>
             <li>Paquete deportivo y paragolpes RS3</li>
           </ul>
+          <details class="equipamiento">
+            <summary><span class="abrir">Ver todo el equipamiento (38 extras)</span><span class="cerrar">Ocultar equipamiento</span></summary>
+            <div class="grupos">
+              <div><h4>Seguridad</h4><ul>
+                <li>ABS</li><li>Control de estabilidad (ESP)</li><li>Control de tracción</li><li>Asistente de arranque en pendiente</li><li>Anclajes ISOFIX en el asiento del acompañante</li>
+              </ul></div>
+              <div><h4>Luces</h4><ul>
+                <li>Faros de xenón</li><li>Luces de circulación diurna</li><li>Faros antiniebla</li><li>Lavafaros</li>
+              </ul></div>
+              <div><h4>Confort</h4><ul>
+                <li>Asientos calefactables</li><li>Tapicería de cuero y alcántara</li><li>Asientos deportivos</li><li>Reposabrazos</li><li>Elevalunas eléctricos</li><li>Retrovisores eléctricos</li><li>Retrovisor interior fotocromático</li><li>Cierre centralizado</li><li>Dirección asistida</li>
+              </ul></div>
+              <div><h4>Conducción</h4><ul>
+                <li>Control de crucero</li><li>Limitador de velocidad</li><li>Sensor de lluvia</li><li>Sensor de luces</li><li>Start/Stop</li><li>Ordenador de a bordo</li>
+              </ul></div>
+              <div><h4>Multimedia</h4><ul>
+                <li>Radio y CD</li><li>Bluetooth y manos libres</li><li>Navegador GPS</li>
+              </ul></div>
+              <div><h4>Deportivo</h4><ul>
+                <li>Paquete deportivo</li><li>Suspensión deportiva</li><li>Volante deportivo multifunción</li><li>Paragolpes delantero RS3</li><li>Pinzas de freno rojas</li><li>Llantas de aleación</li>
+              </ul></div>
+              <div><h4>Otros</h4><ul>
+                <li>Neumáticos todo tiempo</li><li>Kit de rueda de repuesto con compresor</li><li>Paquete fumador</li><li>Coche de no fumador</li><li>Libro de mantenimiento</li>
+              </ul></div>
+            </div>
+          </details>
           <div class="acciones">
-            <a class="boton boton-lleno" href="https://wa.me/34722873925" data-wa="Hola, me interesa el Audi A3 Cabrio de 2011 (10.990 €) que tenéis en la web." target="_blank" rel="noopener"><svg class="icono-wa" aria-hidden="true"><use href="#wa"/></svg>Me interesa</a>
+            <a class="boton boton-lleno" href="https://wa.me/34722873925" data-wa="Hola, me interesa el Audi A3 Cabrio Full Extras de 2011 (10.990 €) que tenéis en la web." target="_blank" rel="noopener"><svg class="icono-wa" aria-hidden="true"><use href="#wa"/></svg>Me interesa</a>
             <a class="boton boton-oscuro" href="https://es.wallapop.com/item/audi-a3-descapotable-full-extras-1319574176" target="_blank" rel="noopener">Comprar en Wallapop</a>
           </div>
         </div>
