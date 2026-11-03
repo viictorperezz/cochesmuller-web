@@ -40,7 +40,7 @@
       "name": "Coches Müller",
       "alternateName": ["Coches Muller", "Coches Mueller"],
       "slogan": "Elegidos como si fueran nuestros.",
-      "description": "Compraventa de coches, importación a la carta y consultoría de coches e importación. Revisamos cada coche en persona y lo entregamos listo para conducir.",
+      "description": "Compraventa de coches, importación a la carta, consultoría de coches e importación y venta de tu coche a comisión. Revisamos cada coche en persona y lo entregamos listo para conducir.",
       "url": "https://cochesmuller.com/",
       "logo": "https://cochesmuller.com/logo.png",
       "image": "https://cochesmuller.com/og.png",
@@ -188,12 +188,13 @@
   .servicios { padding: clamp(72px, 9vw, 120px) 0 clamp(80px, 10vw, 140px); }
   .servicios .cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: clamp(32px, 4vw, 52px); }
   .servicios h2 { font-size: clamp(34px, 4.4vw, 60px); margin-top: 12px; }
+  .servicios .cabeza > div { max-width: 760px; }
   .servicios .cabeza p { max-width: 430px; color: rgb(255 255 255 / .75); }
-  .tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .tarjetas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
   .tarjeta { position: relative; min-height: 560px; display: flex; flex-direction: column; justify-content: flex-end; padding: 36px; overflow: hidden; isolation: isolate; text-decoration: none; }
   .tarjeta img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
   .tarjeta::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(10 18 32 / .15) 0%, rgb(10 18 32 / .55) 45%, rgb(10 18 32 / .94) 100%); transition: background .4s; }
-  .tarjeta h3 { font-size: clamp(26px, 2.4vw, 34px); }
+  .tarjeta h3 { font-size: clamp(24px, 2vw, 30px); }
   .tarjeta p { margin-top: 12px; color: rgb(255 255 255 / .85); max-width: 34ch; }
   .tarjeta .num { margin-bottom: auto; padding-bottom: 20px; font-weight: 800; font-style: italic; font-size: 54px; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--naranja); }
   .tarjeta .mas { margin-top: 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-weight: 600; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; border-top: 1px solid rgb(255 255 255 / .18); padding-top: 18px; }
@@ -371,6 +372,7 @@
   .js .rev.visto { opacity: 1; transform: none; }
   .js .tarjetas .rev:nth-child(2) { transition-delay: .12s; }
   .js .tarjetas .rev:nth-child(3) { transition-delay: .24s; }
+  .js .tarjetas .rev:nth-child(4) { transition-delay: .36s; }
   .js .lista-pasos .rev:nth-child(2) { transition-delay: .1s; }
   .js .lista-pasos .rev:nth-child(3) { transition-delay: .2s; }
   .js .lista-pasos .rev:nth-child(4) { transition-delay: .3s; }
@@ -378,6 +380,7 @@
   /* ---------- Tablet ---------- */
   @media (max-width: 1080px) {
     .lista-pasos { grid-template-columns: repeat(2, 1fr); }
+    .tarjetas { grid-template-columns: repeat(2, 1fr); }
     .tarjeta { min-height: 480px; padding: 28px; }
   }
   /* ---------- Móvil ---------- */
@@ -501,9 +504,9 @@
     <div class="envoltura cabeza rev">
       <div>
         <p class="antetitulo">Nuestros servicios</p>
-        <h2 class="titular">Tres formas de conseguir tu coche.</h2>
+        <h2 class="titular">Cuatro formas de ayudarte con tu coche.</h2>
       </div>
-      <p>Llévate uno de nuestros coches, encárganos el que buscas o déjate asesorar para importarlo tú.</p>
+      <p>Llévate uno de nuestros coches, encárganos el que buscas, déjate asesorar o deja que vendamos el tuyo.</p>
     </div>
     <div class="tarjetas">
       <a class="tarjeta rev" href="https://wa.me/34722873925" data-wa="Hola, me interesa comprar uno de vuestros coches." target="_blank" rel="noopener">
@@ -526,6 +529,13 @@
         <h3 class="titular">Consultoría de coches e importación</h3>
         <p>Te asesoramos para elegir bien, tanto en el mercado nacional como en el internacional: qué modelo comprar, qué revisar, cuánto te costará y, si viene de fuera, los trámites para importarlo, lo hagas tú o lo hagamos nosotros.</p>
         <span class="mas">Pedir asesoramiento <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span></span>
+      </a>
+      <a class="tarjeta rev" href="https://wa.me/34722873925" data-wa="Hola, me gustaría que os encargarais de la venta de mi coche." target="_blank" rel="noopener">
+        <img src="img/venta.webp" width="900" height="1350" loading="lazy" alt="Una mano entrega la llave de un coche a otra">
+        <span class="num" aria-hidden="true">04</span>
+        <h3 class="titular">Venta de tu coche</h3>
+        <p>Nos encargamos de vender tu coche de forma profesional, a cambio de una comisión. Antes comprobamos que es una unidad bien cuidada, con los mantenimientos al día y libre de vicios ocultos.</p>
+        <span class="mas">Vender mi coche <span class="flecha" aria-hidden="true"><svg><use href="#flecha"/></svg></span></span>
       </a>
     </div>
   </section>
@@ -677,8 +687,8 @@
 
   <div class="franja" aria-hidden="true">
     <div class="cinta">
-      <span>Compraventa de coches · Importación a la carta · Consultoría ·</span><span>Compraventa de coches · Importación a la carta · Consultoría ·</span>
-      <span>Compraventa de coches · Importación a la carta · Consultoría ·</span><span>Compraventa de coches · Importación a la carta · Consultoría ·</span>
+      <span>Compraventa de coches · Importación a la carta · Consultoría · Venta de tu coche ·</span><span>Compraventa de coches · Importación a la carta · Consultoría · Venta de tu coche ·</span>
+      <span>Compraventa de coches · Importación a la carta · Consultoría · Venta de tu coche ·</span><span>Compraventa de coches · Importación a la carta · Consultoría · Venta de tu coche ·</span>
     </div>
   </div>
 
@@ -715,6 +725,7 @@
             <option value="compraventa">Comprar uno de vuestros coches</option>
             <option value="importacion">Importación a la carta</option>
             <option value="consultoria">Consultoría de coches e importación</option>
+            <option value="venta">Que vendáis mi coche</option>
             <option value="otra">Otra consulta</option>
           </select>
         </label>
